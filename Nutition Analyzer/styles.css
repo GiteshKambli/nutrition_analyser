@@ -60,7 +60,7 @@ h1{
     padding: 18px 40px;
     width: 200px;
     text-align: center;
-    border-radius: 25px;
+    border-radius: 30px;
     background-color: transparent;
     outline: none;
     background-color: rgba(73,183,179,255);
@@ -75,7 +75,7 @@ h1{
     padding: 20px 40px;
     width: 200px;
     text-align: center;
-    border-radius: 25px;
+    border-radius: 30px;
     background-color: transparent;
     margin: 50px 30px 0px 0px;
     outline: none;
@@ -103,9 +103,9 @@ h1{
     width: 100%;
 }
 
-#header .common-btn:hover{
+/* #header .common-btn:hover{
     border: none;
-}
+}  */
 
 #header p{
     margin: 45px 0px 40px;
