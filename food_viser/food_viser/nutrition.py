@@ -16,19 +16,12 @@ def nutrients(text):
     '''
     
     nutrition_dict = {
-        'calories' : [],
-        'total_fat' : [],
-        'total_carbs':[],
-        'protein':[],
-        'total_sugar':[],
-        'sodium':[],
-        'cholesterol':[],
-        'fiber':[],
-        'saturated_fat':[],
-        'trans_fat':[],
-        'sodium':[],
-        'potassium':[]
-        
+        'calories' : [],'total_fat' : [],
+        'total_carbs':[],'protein':[],
+        'total_sugar':[],'sodium':[],
+        'cholesterol':[],'fiber':[],
+        'saturated_fat':[],'trans_fat':[],
+        'sodium':[],'potassium':[]
     }
 
     text = text.lower()
@@ -111,11 +104,3 @@ def get_nutrition(img,confidence_threshold=0.1):
             
 img = cv2.imread(r'food_viser\static\images\label_examples\istockphoto-185248971-1024x1024.jpg')
 list = get_nutrition(img)
-
-
-
-
-
-
-
-
