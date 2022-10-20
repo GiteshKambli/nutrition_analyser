@@ -2,6 +2,7 @@ import os
 import torch
 import pytesseract
 import cv2
+import kraken
 
 pytesseract.pytesseract.tesseract_cmd = r'D:\Tesseract\tesseract.exe'
 yolo_path = 'label_localization\yolov5_label_localization_runs'
@@ -17,58 +18,71 @@ def nutrients(text):
     nutrition_dict = {
         'calories' : [],
         'total_fat' : [],
-        'total_calories' : [],
         'total_carbs':[],
-        'total_protein':[],
+        'protein':[],
         'total_sugar':[],
         'sodium':[],
         'cholesterol':[],
-        'total_fiber':[],
+        'fiber':[],
         'saturated_fat':[],
         'trans_fat':[],
         'sodium':[],
         'potassium':[]
         
     }
+
+    text = text.lower()
     text = text.split()
-    for i in text:
+
+    for j,i in enumerate(text):
+        
         if i == 'calories':
             nutrition_dict['calories'] = text[text.index(i)+1]
             
-        if i == 'total':
-            if text[text.index(i)+1] == 'Fat':
-                nutrition_dict['total_fat'] = text[text.index(i)+2]
+        elif i == 'total':
+            if text[j+1] == 'fat':
+                nutrition_dict['total_fat'] = text[j+2]
                 
-            elif text[text.index(i)+1] == 'Carbohydrate':
-                nutrition_dict['total_carbs'] = text[text.index(i)+2]
+            elif text[j+1] == 'carbohydrate' or text[j+1] == 'carbohydrates':
+                nutrition_dict['total_carbs'] = text[j+2]
                 
-            elif text[text.index(i)+1] == 'Protein':
-                nutrition_dict['total_protein'] = text[text.index(i)+2]
+            elif text[j+1] == 'fiber':
+                nutrition_dict['fiber'] = text[j+2]
                 
-            elif text[text.index(i)+1] == 'Fiber':
-                nutrition_dict['total_fiber'] = text[text.index(i)+2]
+            elif text[j+1] == 'sugars' or text[j+1] == 'sugar':
+                nutrition_dict['total_sugar'] = text[j+2]
                 
-            elif text[text.index(i)+1] == 'sugars' or text[text.index(i)+1] == 'sugar':
-                nutrition_dict['total_sugar'] = text[text.index(i)+2]
+            elif text[j+1] == 'cholesterol':
+                nutrition_dict['total_cholestrol'] = text[j+2]
                 
-            elif text[text.index(i)+1] == 'Cholesterol':
-                nutrition_dict['total_cholestrol'] = text[text.index(i)+2]
-                
-        if i == 'Cholesterol':
-            nutrition_dict['cholesterol'] = text[text.index(i)+1]
+        elif i == 'cholesterol':
+            nutrition_dict['cholesterol'] = text[j+1]
             
-        if i == 'Saturated':
-            nutrition_dict['saturated_fat'] = text[text.index(i)+2]
+        elif i == 'saturated':
+            nutrition_dict['saturated_fat'] = text[j+2]
             
-        if i == 'Trans':
-            nutrition_dict['trans_fat'] = text[text.index(i)+2]
+        elif i == 'trans':
+            nutrition_dict['trans_fat'] = text[j+2]
             
-        if i == 'Sodium':
-            nutrition_dict['sodium'] = text[text.index(i)+1]
+        elif i == 'sodium':
+            nutrition_dict['sodium'] = text[j+1]
             
-        if i == 'Potassium':
-            nutrition_dict['potassium'] = text[text.index(i)+1]
-
+        elif i == 'potassium':
+            nutrition_dict['potassium'] = text[j+1]
+            
+        elif i == 'dietary':
+            nutrition_dict['fiber'] = text[j+2]
+        
+        elif i == 'fiber':
+            nutrition_dict['fiber'] = text[j+1]
+            
+        elif i == 'protein':
+            nutrition_dict['protein'] = text[j+1]
+            
+        elif i == 'sugars' or i == 'sugar':
+            if nutrition_dict['total_sugar'] == []:
+                nutrition_dict['total_sugar'] = text[j+1]
+                
     return nutrition_dict
             
 
@@ -78,6 +92,7 @@ def get_nutrition(img,confidence_threshold=0.1):
     Function to localize the labels in the image and extract nutrition facts
     '''
     
+    nutrients_list = []
     output = localization_model(img)
     output_df = output.pandas().xyxy[0]
     output_df = output_df[output_df['confidence'] > confidence_threshold]
@@ -90,9 +105,12 @@ def get_nutrition(img,confidence_threshold=0.1):
         cropped_image = img[y1:y2,x1:x2]
         
         label_info = nutrients((pytesseract.image_to_string(cropped_image)))
+        nutrients_list.append(label_info)
+    
+    return nutrients_list
             
-# img = cv2.imread(r'food_viser\food_viser\nutrition-facts-label-download-image1.jpg')
-# get_nutrition(img)         
+img = cv2.imread(r'food_viser\static\images\label_examples\istockphoto-185248971-1024x1024.jpg')
+list = get_nutrition(img)
 
 
 
