@@ -80,9 +80,11 @@ def extract_nutrients(text):
     return nutrition_dict
 
 def nutrients_recognition(img,method = 'easyocr'):
+    
     '''
-    Function to extract the nutrition facts using easyocr
+    Function to recognize the text in the image and extract the nutrition facts
     '''
+    
     if(method == 'easyocr'):
         detections = reader.readtext(img)
         
