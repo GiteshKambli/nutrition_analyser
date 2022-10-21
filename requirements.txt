@@ -1,0 +1,6 @@
+Django==4.0.4
+easyocr==1.6.2
+opencv_python_headless==4.5.4.60
+pytesseract==0.3.10
+requests==2.27.1
+torch==1.11.0
