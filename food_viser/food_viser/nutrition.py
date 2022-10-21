@@ -1,15 +1,16 @@
 import os
 import torch
-import pytesseract
 import cv2
-import kraken
+import  easyocr, pytesseract
 
-pytesseract.pytesseract.tesseract_cmd = r'D:\Tesseract\tesseract.exe'
 yolo_path = 'label_localization\yolov5_label_localization_runs'
 best_weights = os.path.join(yolo_path, 'weights', 'best.pt')
 localization_model = torch.hub.load('ultralytics/yolov5', 'custom', best_weights)
 
-def nutrients(text):
+reader = easyocr.Reader(['en'], gpu=False)
+pytesseract.pytesseract.tesseract_cmd = r'D:\Tesseract\tesseract.exe'
+
+def extract_nutrients(text):
     
     '''
     Function to extract the nutritients from text while iterating through it
@@ -77,9 +78,24 @@ def nutrients(text):
                 nutrition_dict['total_sugar'] = text[j+1]
                 
     return nutrition_dict
-            
 
-def get_nutrition(img,confidence_threshold=0.1):
+def nutrients_recognition(img,method = 'easyocr'):
+    '''
+    Function to extract the nutrition facts using easyocr
+    '''
+    if(method == 'easyocr'):
+        detections = reader.readtext(img)
+        
+        text = ""
+        for i in detections:
+            text += i[1] + " "
+            
+        return extract_nutrients(text)
+    
+    elif(method == 'pytesseract'):
+        return extract_nutrients(pytesseract.image_to_string(img))
+            
+def get_nutrition(img,confidence_threshold=0.1,ocr = 'easyocr'):
     
     '''
     Function to localize the labels in the image and extract nutrition facts
@@ -97,10 +113,11 @@ def get_nutrition(img,confidence_threshold=0.1):
         x1,x2,y1,y2 = int(bb['xmin']), int(bb['xmax']), int(bb['ymin']), int(bb['ymax'])
         cropped_image = img[y1:y2,x1:x2]
         
-        label_info = nutrients((pytesseract.image_to_string(cropped_image)))
+        label_info = nutrients_recognition(cropped_image,method = ocr)
         nutrients_list.append(label_info)
     
     return nutrients_list
             
-img = cv2.imread(r'food_viser\static\images\label_examples\istockphoto-185248971-1024x1024.jpg')
-list = get_nutrition(img)
+img = cv2.imread(r'food_viser\static\images\label_examples\nutrition-facts-label-download-image1.jpg')
+list = get_nutrition(img,ocr = 'easyocr')
+print(list)
