@@ -26,7 +26,7 @@ SECRET_KEY = "django-insecure-8qm2g*tx_(v_t57ev7wn0(uney)4em3$6+o4rizc1&s30)2vt6
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['nutrition-analyser.herokuapp.com']
 
 
 # Application definition
