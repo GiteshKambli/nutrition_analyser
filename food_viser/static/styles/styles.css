@@ -17,8 +17,8 @@ body {
 
 #header{
     height: 100vh;
-    background-image: url("/static/images/food1.jpg");
-    background-image: linear-gradient(rgba(0,0,0,0.75),rgba(0,0,0,0.75)), url(food1.jpg);
+    background-image: url(../MainPage/images/food1.jpg);
+    background-image: linear-gradient(rgba(0,0,0,0.75),rgba(0,0,0,0.75)), url(../MainPage/images/food1.jpg);
     background-position: center;
     background-size: cover;
 }
@@ -26,6 +26,7 @@ body {
 #header h1{
     font-size: 70px;
     color: white;
+    margin-top: -40px;
     /* rgba(73,183,179,255) */
 }
 
@@ -44,10 +45,6 @@ body {
     margin-top: 140px;
 }
 
-h1{
-    font-size: 40px;
-}
-
 .square{
     height: 12px;
     width: 12px;
@@ -60,7 +57,7 @@ h1{
     padding: 18px 40px;
     width: 200px;
     text-align: center;
-    border-radius: 30px;
+    border-radius: 25px;
     background-color: transparent;
     outline: none;
     background-color: rgba(73,183,179,255);
@@ -75,7 +72,7 @@ h1{
     padding: 20px 40px;
     width: 200px;
     text-align: center;
-    border-radius: 30px;
+    border-radius: 25px;
     background-color: transparent;
     margin: 50px 30px 0px 0px;
     outline: none;
@@ -105,7 +102,7 @@ h1{
 
 /* #header .common-btn:hover{
     border: none;
-}  */
+} */
 
 #header p{
     margin: 45px 0px 40px;
@@ -229,7 +226,15 @@ nav ul li a{
 /* features */
 #features{
     padding-top: 50px;
-    padding-bottom: 50px;
+    padding-bottom: 40px;
+    padding-left: 100px;
+    padding-right: 100px;
+}
+
+#features h1{
+    font-size: 40px;
+    text-align: center;
+    margin-bottom: 30px;
 }
 
 .feature-row{
@@ -239,6 +244,13 @@ nav ul li a{
     align-items: center;
     justify-content: space-around;
     flex-wrap: wrap;
+}
+
+#features hr{
+    align-items: center;
+    padding: 50px 0 10px;
+    width: 100%;
+    margin-bottom: -50px;
 }
 
 .feature-col{
@@ -262,12 +274,14 @@ nav ul li a{
     align-items: center;
     align-items: flex-end;
     justify-content: center;
+    margin-bottom: 40px;
 }
 
 .feature-btn .line{
-    text-align: right;
+    display: none;
+    /* text-align: right;
     display: inline-block;
-    margin-right: 25px;
+    margin-right: 25px; */
 }
 
 /* #courses{
@@ -319,6 +333,8 @@ nav ul li a{
 
 .contact-left-col h1{
     margin: 40px;
+    font-size: 45px;
+    margin-top: 60px;
 }
 
 .contact-right-col img{
@@ -410,39 +426,98 @@ hr{
     flex-basis: 40%;
 }
 
-@media only screen and (max-width: 770px){
+@media only screen and (max-width: 1000px){
     #header{
-        background-image: none;
+        height: 100vh;
+        background-image: url(../MainPage/images/food1.jpg);
+        background-image: linear-gradient(rgba(0,0,0,0.75),rgba(0,0,0,0.75)), url(../MainPage/images/food1.jpg);
+        background-position: center;
+        background-size: cover;
     }
     .container{
-        margin-right: 50px;
-        margin-left: 50px;
+        margin-right: 20px;
+        margin-left: 20px;
     }
     
     .logo{
         margin-top: 30px;
-        width: 70px;
+        width: 120px;
     }
     
     .header-text{
-        margin-top: 100px;
+        margin-top: 40px;
     }
     
-    h1{
-        font-size: 25px;
+    #header p{
+        color: aqua;
+        padding: 20px;
+        margin: 30px 10px 10px 10px;
+    }
+
+    #header h1{
+        font-size: larger;
+        font-weight: bolder;
+        font-size: 40px;
+        padding: 20px;
+        margin: 10px 10px 10px 10px;
+
     }
     #menuBtn{
         width: 40px;
         right: 50px;
     }
+
+    #header .common-btn{
+        padding: 20px 40px;
+        width: 175px;
+        text-align: center;
+        border-radius: 25px;
+        background-color: transparent;
+        margin: 100px 10px 10px 15px;
+        border: 2px solid rgba(73,183,179,255);
+        font-weight: bolder;
+    }
+    
     .common-btn{
         padding: 10px 16px;
         background-color: transparent;
         outline: none;
-        border: 2px solid red;
+        border: 2px solid rgba(73,183,179,255);
         font-weight: bold;
         cursor: pointer;
+        color: black;
+        font-weight: bolder;
     }
+
+    .feature-btn{
+        margin: 0px auto 0;
+        display: flex;
+        align-items: center;
+        align-items: flex-end;
+        justify-content: center;
+    }
+    
+    .feature-btn .line{
+        display: none;
+    }
+
+    #features{
+        margin-bottom: -100px;
+    }
+
+
+    #features hr{
+        margin-top: 50px;
+        padding: 60px 0 10px;
+        width: 100%;
+    }
+
+    .contact-left-col h1{
+        margin: 40px;
+        font-size: 45px;
+        margin-top: 60px;
+    }
+
     .about-left-col, .about-right-col{
         flex-basis: 100%;
     }
