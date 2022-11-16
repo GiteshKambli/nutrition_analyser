@@ -11,17 +11,15 @@ localization_model = torch.hub.load('ultralytics/yolov5', 'custom', best_weights
 reader = easyocr.Reader(['en'], gpu=False)
 
 
-# pytesseract.pytesseract.tesseract_cmd = r'D:\Tesseract\tesseract.exe'
-
 def nutrients_classifier(nutrition_dict):
     """
     Function to classify the amount of nutrients as healthy or not
     """
 
     class_dict = {
-        'cal': [], 'fat': [],
-        'carbs': [], 'sugars': [],
-        'cholesterol': []
+        'Calories': [], 'Fats': [],
+        'Carbohydrates': [], 'Sugars': [],
+        'Cholesterol': []
     }
     total_fat, saturated_fat, sugar = 0, 0, 0
 
@@ -53,16 +51,16 @@ def nutrients_classifier(nutrition_dict):
                 val = val / 9
                 if val > 100:
                     val = 100
-                class_dict['cal'] = val
+                class_dict['Calories'] = val
 
             elif nutrient == 'total_fat':
                 total_fat = val
 
             elif nutrient == 'total_carbs':
-                class_dict['carbs'] = val
+                class_dict['Carbohydrates'] = val
 
             elif nutrient == 'fiber':
-                class_dict['carbs'] -= val
+                class_dict['Carbohydrates'] -= val
 
             elif nutrient == 'saturated_fat':
                 saturated_fat = val
@@ -74,47 +72,50 @@ def nutrients_classifier(nutrition_dict):
                 sugar = val
 
             elif nutrient == 'protein':
-                class_dict['carbs'] -= val
+                class_dict['Carbohydrates'] -= val
 
             elif nutrient == 'sodium':
-                val = val / 2.5
-                if val > 100:
+                val = val / 1.2
+                if val > 120:
                     val = 100
-                class_dict['sodium'] = val
+                class_dict['Sodium'] = val
 
             elif nutrient == 'potassium':
                 val = val / 5
                 if val > 100:
                     val = 100
-                class_dict['potassium'] = val
+                class_dict['Potassium'] = val
 
             elif nutrient == 'cholesterol':
                 val = val / 300
                 if val > 100:
                     val = 100
-                class_dict['cholesterol'] = val
+                class_dict['Cholesterol'] = val
 
+    carbs = class_dict['Carbohydrates']
+
+    carbs = (carbs - 20) * 100
     total_fat = (total_fat - 3.0) * 8
     saturated_fat = ((saturated_fat - 1.5) * 1000) / 350
+    sugar = ((sugar - 5) * 1000) / 175
+
+    if carbs > 100:
+        carbs = 100
+
+    if sugar > 100:
+        sugar = 100
 
     if total_fat > 100:
         total_fat = 100
 
     if saturated_fat > 100:
         saturated_fat = 100
-    class_dict['fat'] = (total_fat + saturated_fat) / 2
-    sugar = ((sugar - 5) * 1000) / 175
 
-    if sugar > 100:
-        sugar = 100
+    class_dict['Sugars'] = sugar
+    class_dict['Fats'] = (total_fat + saturated_fat) / 2
+    class_dict['Carbohydrates'] = carbs
 
-    class_dict['sugars'] = sugar
-    carbs = class_dict['carbs']
-    carbs = (carbs - 20) * 100
-
-    if carbs > 100:
-        carbs = 100
-    class_dict['carbs'] = carbs
+    print(class_dict)
 
     return class_dict
 

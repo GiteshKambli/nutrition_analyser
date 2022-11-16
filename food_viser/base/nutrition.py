@@ -10,6 +10,7 @@ localization_model = torch.hub.load('ultralytics/yolov5', 'custom', best_weights
 
 reader = easyocr.Reader(['en'], gpu=False)
 
+
 def nutrients_classifier(nutrition_dict):
     """
     Function to classify the amount of nutrients as healthy or not
@@ -18,7 +19,7 @@ def nutrients_classifier(nutrition_dict):
     class_dict = {
         'Calories': [], 'Fats': [],
         'Carbohydrates': [], 'Sugars': [],
-        'Cholestrol': []
+        'Cholesterol': []
     }
     total_fat, saturated_fat, sugar = 0, 0, 0
 
@@ -91,7 +92,7 @@ def nutrients_classifier(nutrition_dict):
             class_dict['Cholesterol'] = val
 
     carbs = class_dict['Carbohydrates']
-    
+
     carbs = (carbs - 45) * 100
     total_fat = (total_fat - 3.0) * 8
     saturated_fat = ((saturated_fat - 1.5) * 1000) / 350
@@ -99,20 +100,20 @@ def nutrients_classifier(nutrition_dict):
 
     if carbs > 100:
         carbs = 100
-        
+
     if sugar > 100:
         sugar = 100
-        
+
     if total_fat > 100:
         total_fat = 100
 
     if saturated_fat > 100:
         saturated_fat = 100
-        
+
     class_dict['Sugars'] = sugar
     class_dict['Fat'] = (total_fat + saturated_fat) / 2
     class_dict['Carbohydrates'] = carbs
-    
+
     print(class_dict)
 
     return class_dict
