@@ -13,22 +13,26 @@
 
 <body style="background-image: linear-gradient(rgba(0,0,0,0.75),rgba(0,0,0,0.75)), url({% static 'images/food.jpg' %})">
     <div class="container">
+        {% if nutrition %}
+            <h3 style="color:white">Results:</h3>
+            {% for key, val in nutrition.items %}
+                <div>
+                <p style="color:white">{{ key }} : {{ val }}</p>
+                </div>
+                <progress id="file" value="{{ val }}" max="100"> 32% </progress>
+            {% endfor %}
+        {% else %}
+            <form method="post" enctype="multipart/form-data">
+                <div class="img-area" data-img="">
+                    {% csrf_token %}
+                    <input type="file" name="sentFile" />
 
-        <form method="post" enctype="multipart/form-data">
-            <div class="img-area" data-img="">
-                {% csrf_token %}
-                <!-- {{ form.as_p }} -->
-                <input type="file" name="sentFile" />
-
-            </div>
-            <input type="submit" name="submit" value="Upload" />
-            <!-- <button type="submit" class="select-image">Upload</button> -->
-        </form>
+                </div>
+                <input class="select-image" type="submit" name="submit" value="Upload" />
+                <!-- <button type="submit" class="select-image">Upload</button> -->
+            </form>
+        {% endif %}
     </div>
-    <!--    {% if nutrition %}-->
-    <!--        <h3>Results : {{ nutritions }}</h3>-->
-    <!--        <img src="{{ img_obj.image.url}}" alt="connect" style="max-height:300px">-->
-    <!--    {% endif %}    -->
 </body>
 
 </html>
