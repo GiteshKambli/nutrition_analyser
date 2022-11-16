@@ -37,7 +37,7 @@ def nutrients_classifier(nutrition_dict):
                     if val == 'o' or val == 'O':
                         val = 0.0
                     else:
-                        val = float(val) * 1000
+                        val = float(val)
 
                 else:
                     if val == 'o' or val == 'O':
@@ -75,7 +75,7 @@ def nutrients_classifier(nutrition_dict):
                 class_dict['Carbohydrates'] -= val
 
             elif nutrient == 'sodium':
-                val = val / 1.2
+                val = val / 3
                 if val > 120:
                     val = 100
                 class_dict['Sodium'] = val
@@ -94,7 +94,7 @@ def nutrients_classifier(nutrition_dict):
 
     carbs = class_dict['Carbohydrates']
 
-    carbs = (carbs - 20) * 100
+    carbs = (carbs / 45) * 100
     total_fat = (total_fat - 3.0) * 8
     saturated_fat = ((saturated_fat - 1.5) * 1000) / 350
     sugar = ((sugar - 5) * 1000) / 175
@@ -114,9 +114,7 @@ def nutrients_classifier(nutrition_dict):
     class_dict['Sugars'] = sugar
     class_dict['Fats'] = (total_fat + saturated_fat) / 2
     class_dict['Carbohydrates'] = carbs
-
-    print(class_dict)
-
+    
     return class_dict
 
 
@@ -215,9 +213,9 @@ def get_nutrition(img, confidence_threshold=0.1, ocr='easyocr'):
     output = localization_model(img)
     output_df = output.pandas().xyxy[0]
     output_df = output_df[output_df['confidence'] > confidence_threshold]
-    leng = output_df.shape[0]
+    number_of_boxes = output_df.shape[0]
 
-    for i in range(leng):
+    for i in range(number_of_boxes):
         bb = output_df.loc[i]
         x1, x2, y1, y2 = int(bb['xmin']), int(bb['xmax']), int(bb['ymin']), int(bb['ymax'])
         cropped_image = img[y1:y2, x1:x2]
@@ -230,5 +228,5 @@ def get_nutrition(img, confidence_threshold=0.1, ocr='easyocr'):
 
 if __name__ == '__main__':
     img = cv2.imread(r'food_viser\static\images\label_examples\nutrition-facts-label-download-image1.jpg')
-    lis = get_nutrition(img, ocr='easyocr')
-    print(lis)
+    nutrients_list = get_nutrition(img, ocr='easyocr')
+    print(nutrients_list)

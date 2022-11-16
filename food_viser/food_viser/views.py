@@ -18,7 +18,6 @@ def scan_label(request):
         print(file_url)
         img = cv2.imread(file_url)
         nutrition = get_nutrition(img, ocr='easyocr')
-        print(nutrition)
 
         return render(request, 'scan.html', {'nutrition': nutrition[0]})
 
