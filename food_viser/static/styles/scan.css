@@ -108,3 +108,7 @@ span{
     transition: all .3s ease;
     margin: auto;
 }
+
+.title{
+    margin-bottom: 30px;
+}
