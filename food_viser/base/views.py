@@ -6,7 +6,6 @@ import numpy as np
 import urllib.request
 import cv2
 import os
-import matplotlib.pyplot as plt
 
 from django.shortcuts import render
 from django.http import JsonResponse
@@ -14,13 +13,11 @@ import base64
 from django.core.files.base import ContentFile
 from django.core.files.storage import default_storage
 from django.conf import settings
+
 from tensorflow.python.keras.backend import set_session
-from tensorflow.keras.utils import load_img
-from tensorflow.keras.utils import img_to_array
-# from tensorflow.keras.applications.imagenet_utils import decode_predictions
 import matplotlib.pyplot as plt
 import numpy as np
-from keras.applications import vgg16
+
 import datetime
 import traceback
 
