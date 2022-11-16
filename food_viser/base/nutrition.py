@@ -6,7 +6,7 @@ import torch
 
 yolo_path = '..\label_localization\yolov5_label_localization_runs'
 best_weights = os.path.join(yolo_path, 'weights', 'best.pt')
-localization_model = torch.hub.load('ultralytics/yolov5', 'custom', best_weights, force_reload=True)
+localization_model = torch.hub.load('ultralytics/yolov5', 'custom', best_weights)
 
 reader = easyocr.Reader(['en'], gpu=False)
 
@@ -28,73 +28,72 @@ def nutrients_classifier(nutrition_dict):
         if not val:
             nutrition_dict[nutrient] = 0.0
 
-        else:
-            if val.endswith('g') or val.endswith('9'):
+        elif val.endswith('g') or val.endswith('9'):
+            val = val[:-1]
+
+            if val.endswith('m'):
                 val = val[:-1]
-
-                if val.endswith('m'):
-                    val = val[:-1]
-                    if val == 'o' or val == 'O':
-                        val = 0.0
-                    else:
-                        val = float(val)
-
+                if val == 'o' or val == 'O':
+                    val = 0.0
                 else:
-                    if val == 'o' or val == 'O':
-                        val = 0.0
-                    else:
-                        val = float(val)
+                    val = float(val)
 
+            else:
+                if val == 'o' or val == 'O':
+                    val = 0.0
+                else:
+                    val = float(val)
+        else:
             val = float(val)
 
-            if nutrient == 'calories':
-                val = val / 9
-                if val > 100:
-                    val = 100
-                class_dict['Calories'] = val
+        if nutrient == 'calories':
+            val = val / 9
+            if val > 100:
+                val = 100
+            class_dict['Calories'] = val
 
-            elif nutrient == 'total_fat':
-                total_fat = val
+        elif nutrient == 'total_fat':
+            total_fat = val
 
-            elif nutrient == 'total_carbs':
-                class_dict['Carbohydrates'] = val
+        elif nutrient == 'total_carbs':
+            class_dict['Carbohydrates'] = val
 
-            elif nutrient == 'fiber':
-                class_dict['Carbohydrates'] -= val
+        elif nutrient == 'fiber':
+            class_dict['Carbohydrates'] -= val
 
-            elif nutrient == 'saturated_fat':
-                saturated_fat = val
+        elif nutrient == 'saturated_fat':
+            saturated_fat = val
 
-            elif nutrient == 'trans_fat':
-                continue
+        elif nutrient == 'trans_fat':
+            continue
 
-            elif nutrient == 'total_sugar':
-                sugar = val
+        elif nutrient == 'total_sugar':
+            sugar = val
 
-            elif nutrient == 'protein':
-                class_dict['Carbohydrates'] -= val
+        elif nutrient == 'protein':
+            class_dict['Carbohydrates'] -= val
 
-            elif nutrient == 'sodium':
-                val = val / 3
-                if val > 120:
-                    val = 100
-                class_dict['Sodium'] = val
+        elif nutrient == 'sodium':
+            val = val / 1.2
+            if val > 120:
+                val = 100
+            class_dict['Sodium'] = val
 
-            elif nutrient == 'potassium':
-                val = val / 5
-                if val > 100:
-                    val = 100
-                class_dict['Potassium'] = val
+        elif nutrient == 'potassium':
+            val = val / 5
+            if val > 100:
+                val = 100
+            class_dict['Potassium'] = val
 
-            elif nutrient == 'cholesterol':
-                val = val / 300
-                if val > 100:
-                    val = 100
-                class_dict['Cholesterol'] = val
+        elif nutrient == 'cholesterol':
+            val = val / 300
+            if val > 100:
+                val = 100
+            class_dict['Cholesterol'] = val
 
     carbs = class_dict['Carbohydrates']
 
-    carbs = (carbs / 45) * 100
+    carbs = (carbs - 45) * 100
     total_fat = (total_fat - 3.0) * 8
     saturated_fat = ((saturated_fat - 1.5) * 1000) / 350
     sugar = ((sugar - 5) * 1000) / 175
@@ -112,9 +111,11 @@ def nutrients_classifier(nutrition_dict):
         saturated_fat = 100
 
     class_dict['Sugars'] = sugar
-    class_dict['Fats'] = (total_fat + saturated_fat) / 2
+    class_dict['Fat'] = (total_fat + saturated_fat) / 2
     class_dict['Carbohydrates'] = carbs
-    
+
+    print(class_dict)
+
     return class_dict
 
 
@@ -213,9 +214,9 @@ def get_nutrition(img, confidence_threshold=0.1, ocr='easyocr'):
     output = localization_model(img)
     output_df = output.pandas().xyxy[0]
     output_df = output_df[output_df['confidence'] > confidence_threshold]
-    number_of_boxes = output_df.shape[0]
+    len = output_df.shape[0]
 
-    for i in range(number_of_boxes):
+    for i in range(len):
         bb = output_df.loc[i]
         x1, x2, y1, y2 = int(bb['xmin']), int(bb['xmax']), int(bb['ymin']), int(bb['ymax'])
         cropped_image = img[y1:y2, x1:x2]
@@ -227,6 +228,6 @@ def get_nutrition(img, confidence_threshold=0.1, ocr='easyocr'):
 
 
 if __name__ == '__main__':
-    img = cv2.imread(r'food_viser\static\images\label_examples\nutrition-facts-label-download-image1.jpg')
-    nutrients_list = get_nutrition(img, ocr='easyocr')
-    print(nutrients_list)
+    img = cv2.imread(r'food_viser\static\images\label_examples\lbl1.jpg')
+    list = get_nutrition(img, ocr='easyocr')
+    print(list)

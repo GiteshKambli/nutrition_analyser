@@ -23,7 +23,7 @@ SECRET_KEY = "django-insecure-8qm2g*tx_(v_t57ev7wn0(uney)4em3$6+o4rizc1&s30)2vt6
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['127.0.0.1', 'nutrition-analyser.herokuapp.com']
 
 
 # Application definition
@@ -118,7 +118,6 @@ STATICFILES_DIRS = [
 
 PROJECT_DIR = os.path.dirname(os.path.abspath(__file__))
 STATIC_ROOT = os.path.join(PROJECT_DIR, 'static')
-STATIC_URL = '/static/'
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
