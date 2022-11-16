@@ -75,27 +75,6 @@ body {
     cursor: pointer;
 }
 
-/* #header span{
-    background: rgba(73,183,179,255);
-    height: 100%;
-    width: 0;
-    border-radius: 20px;
-    position: absolute;
-    left: 0;
-    bottom: 0;
-    z-index: -1;
-    transition: 0.5s;    
-} */
-
-/* #header  .common-btn:hover span{
-    border-radius: 20px;
-    width: 100%;
-} */
-
-/* #header .common-btn:hover{
-    border-radius: 20px; */
-    /* border: none;
-} */
 
 #header p{
     margin: 55px 0px 40px;
@@ -151,43 +130,46 @@ nav ul li a{
 
 /* about, offer  */
 
-/* #about{
-    padding: 100px 0;
+#about1{
+    padding: 50px 0;
     display: flex;
     align-items: center;
     flex-wrap: wrap;
 }
 
-.about-left-col{
+.about1-left-col{
     flex-basis: 50%;
 }
 
-.about-left-col img{
-    width: 100%;
+.about1-left-col img{
+    margin-left: 250px;
+    width: 80%;
 }
 
-.about-right-col{
+.about1-right-col{
     flex-basis: 50%;
-    text-align: right;
+    text-align: center;
+    align-items: center;
 }
 
-.about-text{
-    max-width: 500px;
-    margin-right: 100px;
+.about1-text{
+    max-width: 50%;
+    text-align: center;
+    margin-right: 250px;
     display: inline-block;
 }
 
-.about-text h2{
-    margin: 50px 0 10px;
-    font-size: 28px;
+.about1-text h1{
+    margin: 100px 0 20px;
+    font-size: 32px;
     font-style: italic;
 }
-.about-text h3{
-
+.about1-text p{
+    margin-top: 20px;
     font-size: 20px;
-    font-style: italic;
-    color: gray;
-} */
+    font-style: normal;
+    color: grey;
+}
 
 /* features */
 #features{
@@ -218,6 +200,7 @@ nav ul li a{
     width: 100%;
     margin-bottom: -50px;
 }
+
 
 .feature-col{
     flex-basis: 25%;
@@ -496,7 +479,7 @@ hr{
     }
 
     .about-left-col, .about-right-col{
-        flex-basis: 100%;
+        flex-basis: 50%;
     }
     .about-text{
         margin: 50px 50px 0;
