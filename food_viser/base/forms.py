@@ -9,4 +9,4 @@ class UserImageForm(forms.ModelForm):
         # To specify the model to be used to create form
         model = UploadImage
         # It includes all the fields of model
-        fields = '__all__'
+        fields = ['image']
