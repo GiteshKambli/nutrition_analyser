@@ -526,9 +526,9 @@ hr{
     }
     
     #header h1{
-        font-size: 65px;
+        font-size: 50px;
         color: white;
-        margin-bottom: 20px;
+        margin-bottom: 10px;
     } 
     
     .logo{
@@ -540,7 +540,7 @@ hr{
     }
     
     #header .common-btn{
-        margin-top: 0px;
+        margin-top: -30px;
         width: 180px;
     }
   }
@@ -556,7 +556,7 @@ hr{
     }
     
     #header h1{
-        font-size: 55px;
+        font-size: 40px;
         color: white;
         margin-top: -80px;
     }
@@ -624,9 +624,9 @@ hr{
     }
     
     #header h1{
-        font-size: 50px;
+        font-size: 40px;
         color: white;
-        margin-top: -30px;
+        margin-top: -50px;
     }
     
     .container{
@@ -708,6 +708,7 @@ hr{
     }
     
     #header h1{
+        margin-top: -30px;
         font-size: 40px;
         color: white;
         text-align: center;
@@ -746,7 +747,7 @@ hr{
         text-align: center;
         border-radius: 30px;
         /* background-color: transparent; */
-        margin: 50px 30px 0px 0px;
+        margin: 0px 20px 0px 20px;
         outline: none;
         border: 2px solid rgba(73,183,179,255);
         font-weight: bold;
@@ -757,14 +758,13 @@ hr{
     }
     
     #header p{
-        margin: 55px 0px 40px;
+        margin: 15px 0px 40px;
         font-size: 20px;
         line-height: 18px;
         color: rgb(127, 228, 228);
     }
     
     p{
-        margin: 20px 0px 40px;
         font-size: 20px;
         line-height: 18px;
         color: aqua;
