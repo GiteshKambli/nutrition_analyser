@@ -78,7 +78,8 @@ body{
 .img-area h3{
     font-size: 20px;
     font-weight: bold;
-    margin-bottom: 6px;
+    margin-bottom: 20px;
+    color: white;
 }
 
 .img-area p{
@@ -87,6 +88,10 @@ body{
 
 .img-area p span{
     font-weight: bolder;
+}
+
+span{
+    font-color: white;
 }
 
 .select-image{

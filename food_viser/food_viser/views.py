@@ -23,9 +23,9 @@ def scan_label(request):
         # numpy_image = img_to_array(original)
         img = cv2.imread(file_url)
         # print(numpy_image)
-        nutritions = get_nutrition(img, ocr='easyocr')
-        print(nutritions)
+        nutrition = get_nutrition(img, ocr='easyocr')
+        print(nutrition)
 
-        return render(request, 'scan.html')
+        return render(request, 'scan.html', {'nutrition': nutrition[0]})
 
     return render(request, 'scan.html')

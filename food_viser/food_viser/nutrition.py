@@ -214,9 +214,9 @@ def get_nutrition(img, confidence_threshold=0.1, ocr='easyocr'):
     output = localization_model(img)
     output_df = output.pandas().xyxy[0]
     output_df = output_df[output_df['confidence'] > confidence_threshold]
-    len = output_df.shape[0]
+    leng = output_df.shape[0]
 
-    for i in range(len):
+    for i in range(leng):
         bb = output_df.loc[i]
         x1, x2, y1, y2 = int(bb['xmin']), int(bb['xmax']), int(bb['ymin']), int(bb['ymax'])
         cropped_image = img[y1:y2, x1:x2]
@@ -229,5 +229,5 @@ def get_nutrition(img, confidence_threshold=0.1, ocr='easyocr'):
 
 if __name__ == '__main__':
     img = cv2.imread(r'food_viser\static\images\label_examples\nutrition-facts-label-download-image1.jpg')
-    list = get_nutrition(img, ocr='easyocr')
-    print(list)
+    lis = get_nutrition(img, ocr='easyocr')
+    print(lis)
