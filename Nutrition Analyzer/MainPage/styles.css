@@ -13,6 +13,7 @@ body::-webkit-scrollbar {
 body {
     -ms-overflow-style: none;  /* IE and Edge */
     scrollbar-width: none;  /* Firefox */
+    min-height: fit-content;
 }
 
 #header{
@@ -48,7 +49,7 @@ body {
 
 .common-btn{
     padding: 18px 40px;
-    width: 15vw;
+    width: 15px;
     text-align: center;
     border-radius: 25px;
     outline: none;
@@ -62,16 +63,14 @@ body {
 
 #header .common-btn{
     padding: 20px 40px;
-    width: 10vw;
+    width: 180px;
     text-align: center;
     border-radius: 30px;
-    /* background-color: transparent; */
     margin: 50px 30px 0px 0px;
     outline: none;
     border: 2px solid rgba(73,183,179,255);
     font-weight: bold;
     color: white;
-    /* transform: translateY(-50%); */
     position: relative;
     cursor: pointer;
 }
@@ -117,30 +116,6 @@ p{
     margin-bottom: 60px;
 }
 
-/* nav{
-    background: transparent;
-    height: 80px;
-    width: 100vw;
-}
-
-nav ul{
-    margin-top: 30px;
-    float: right;
-    margin-right: 10vw;
-}
-
-nav ul li{
-    display: inline-block;
-    line-height: 80px;
-    margin: 0 10px;
-}
-
-nav ul li a{
-    color: white;
-    
-    font-size: larger;
-    text-transform: uppercase;
-} */
 
 #sideNav{
     font-weight: bold;
@@ -174,9 +149,9 @@ nav ul li a{
     cursor: pointer;
 }
 
-/* about, offer */
+/* about, offer  */
 
-/* #about, #offer{
+/* #about{
     padding: 100px 0;
     display: flex;
     align-items: center;
@@ -417,9 +392,20 @@ hr{
     flex-basis: 40%;
 }
 
-@media only screen and (max-width: 1000px){
+/********** Large devices only **********/
+@media (min-width: 1200px) {
     #header{
         height: 100vh;
+        background-image: url(../MainPage/images/food1.jpg);
+        background-image: linear-gradient(rgba(0,0,0,0.65),rgba(0,0,0,0.65)), url(../MainPage/images/food1.jpg);
+        background-position: center;
+        background-size: cover;
+    }
+  }
+
+@media only screen and (max-width: 1000px){
+    #header{
+        height: 80vh;
         background-image: url(../MainPage/images/food1.jpg);
         background-image: linear-gradient(rgba(0,0,0,0.75),rgba(0,0,0,0.75)), url(../MainPage/images/food1.jpg);
         background-position: center;
@@ -436,13 +422,13 @@ hr{
     }
     
     .header-text{
-        margin-top: 40px;
+        margin-top: 100px;
     }
     
     #header p{
-        color: aqua;
+        color:  aqua;
         padding: 20px;
-        margin: 30px 10px 10px 10px;
+        margin: 30px 10px 80px 10px;
     }
 
     #header h1{
@@ -451,8 +437,8 @@ hr{
         font-size: 40px;
         padding: 20px;
         margin: 10px 10px 10px 10px;
-
     }
+    
     #menuBtn{
         width: 40px;
         right: 50px;
@@ -462,14 +448,14 @@ hr{
         padding: 20px 40px;
         width: 175px;
         text-align: center;
-        border-radius: 25px;
-        background-color: transparent;
+        border-radius: 30px;
+        background-color: rgba(73,183,179,255);
         margin: 100px 10px 10px 15px;
         border: 2px solid rgba(73,183,179,255);
         font-weight: bolder;
     }
     
-    .common-btn{
+    /* .common-btn{
         padding: 10px 16px;
         background-color: transparent;
         outline: none;
@@ -478,7 +464,7 @@ hr{
         cursor: pointer;
         color: black;
         font-weight: bolder;
-    }
+    } */
 
     .feature-btn{
         margin: 0px auto 0;
@@ -545,38 +531,268 @@ hr{
     }
 }
 
-/********** Large devices only **********/
-@media (min-width: 1200px) {
-    #header{
-        height: 100vh;
-        background-image: url(../MainPage/images/food1.jpg);
-        background-image: linear-gradient(rgba(0,0,0,0.75),rgba(0,0,0,0.75)), url(../MainPage/images/food1.jpg);
-        background-position: center;
-        background-size: cover;
-    }
-  }
+
   
   /********** Medium devices only **********/
   @media (min-width: 992px) and (max-width: 1199px) {
+    #header{
+        height: 90vh;
+        background-image: url(../MainPage/images/food1.jpg);
+        background-image: linear-gradient(rgba(0,0,0,0.65),rgba(0,0,0,0.65)), url(../MainPage/images/food1.jpg);
+        background-position: center;
+        background-size: cover;
+    }
+    
+    #header h1{
+        font-size: 65px;
+        color: white;
+        margin-bottom: 20px;
+    } 
+    
+    .logo{
+        width: 150px;
+    }
 
+    #menuBtn{
+        width: 40px;
+    }
+    
+    #header .common-btn{
+        margin-top: 0px;
+        width: 180px;
+    }
   }
   
-  /********** Small devices only **********/
+  /********** Medium small devices only **********/
   @media (min-width: 768px) and (max-width: 991px) {
-
+    #header{
+        height: 80vh;
+        background-image: url(../MainPage/images/food1.jpg);
+        background-image: linear-gradient(rgba(0,0,0,0.65),rgba(0,0,0,0.65)), url(../MainPage/images/food1.jpg);
+        background-position: center;
+        background-size: cover;
+    }
+    
+    #header h1{
+        font-size: 55px;
+        color: white;
+        margin-top: -80px;
+    }
+    
+    .container{
+        margin-right: 100px;
+        margin-left: 100px;
+    }
+    
+    .logo{
+        margin-top: 40px;
+        width: 150px;
+    }
+    
+    .header-text{
+        text-align: center;
+        max-width: 100vw;
+        margin-top: 20vh;
+    }
+    
+    /* .common-btn{
+        padding: 18px 40px;
+        width: 15vw;
+        text-align: center;
+        border-radius: 25px;
+        outline: none;
+        background-color: rgba(73,183,179,255);
+        border: 0.2px solid rgba(73,183,179,255);
+        font-weight: bold;
+        color: white;
+        font-weight: bolder;
+        cursor: pointer;
+    } */
+    
+    #header .common-btn{
+        width: 180px;
+        text-align: center;
+        border-radius: 30px;
+        margin: 10px 30px 20px 30px;
+        outline: none;
+        border: 2px solid rgba(73,183,179,255);
+        font-weight: bold;
+        color: white;
+        position: relative;
+        cursor: pointer;
+    }
+    
+    #header p{
+        margin: 5px 0px 0px 0px;
+        font-size: 20px;
+        line-height: 18px;
+        color: rgb(127, 228, 228);
+    }
   }
+
   
   /********** Extra small devices only **********/
-  @media (max-width: 767px) {
-
+  @media (min-width: 650px) and (max-width: 767px) {
+    #header{
+        height: 100vh;
+        background-image: url(../MainPage/images/food1.jpg);
+        background-image: linear-gradient(rgba(0,0,0,0.65),rgba(0,0,0,0.65)), url(../MainPage/images/food1.jpg);
+        background-position: center;
+        background-size: cover;
+    }
+    
+    #header h1{
+        font-size: 50px;
+        color: white;
+        margin-top: -30px;
+    }
+    
+    .container{
+        margin-right: 100px;
+        margin-left: 100px;
+    }
+    
+    .logo{
+        margin-top: 30px;
+        width: 150px;
+    }
+    
+    .header-text{
+        text-align: center;
+        max-width: 100vw;
+        margin-top: 20vh;
+    }
+    
+    /* .common-btn{
+        padding: 18px 40px;
+        width: 15vw;
+        text-align: center;
+        border-radius: 25px;
+        outline: none;
+        background-color: rgba(73,183,179,255);
+        border: 0.2px solid rgba(73,183,179,255);
+        font-weight: bold;
+        color: white;
+        font-weight: bolder;
+        cursor: pointer;
+    } */
+    
+    #header .common-btn{
+        padding: 20px 40px;
+        width: 1509x;
+        text-align: center;
+        border-radius: 30px;
+        /* background-color: transparent; */
+        margin: 10px 30px 0px 0px;
+        outline: none;
+        border: 2px solid rgba(73,183,179,255);
+        font-weight: bold;
+        color: white;
+        /* transform: translateY(-50%); */
+        position: relative;
+        cursor: pointer;
+    }
+    
+    #header p{
+        margin: 55px 0px 40px;
+        font-size: 20px;
+        line-height: 18px;
+        color: rgb(127, 228, 228);
+    }
+    
+    p{
+        margin: 20px 0px 40px;
+        font-size: 20px;
+        line-height: 18px;
+        color: aqua;
+    }
+    
+    .header-text button{
+        margin-top: 20px;
+        margin-bottom: 60px;
+    }
+    
   }
   
   
   /********** Super extra small devices Only :-) (e.g., iPhone 4) **********/
-  @media (max-width: 479px) {
+  @media (max-width: 649px) {
+    #header{
+        height: 100vh;
+        background-image: url(../MainPage/images/food1.jpg);
+        background-image: linear-gradient(rgba(0,0,0,0.65),rgba(0,0,0,0.65)), url(../MainPage/images/food1.jpg);
+        background-position: center;
+        background-size: cover;
+    }
+    
+    #header h1{
+        font-size: 40px;
+        color: white;
+        text-align: center;
 
-  }
+    }
+    
+    .logo{
+        margin-top: 40px;
+        width: 100px;
+    }
+    
+    .header-text{
+        text-align: center;
+        max-width: 100vw;
+        margin-top: 20vh;
+    }
+    
+    .common-btn{
+        padding: 18px 40px;
+        width: 15vw;
+        text-align: center;
+        align-items: center;
+        border-radius: 25px;
+        outline: none;
+        background-color: rgba(73,183,179,255);
+        border: 0.2px solid rgba(73,183,179,255);
+        font-weight: bold;
+        color: white;
+        font-weight: bolder;
+        cursor: pointer;
+    }
+    
+    #header .common-btn{
+        padding: 20px 40px;
+        width: 180px;
+        text-align: center;
+        border-radius: 30px;
+        /* background-color: transparent; */
+        margin: 50px 30px 0px 0px;
+        outline: none;
+        border: 2px solid rgba(73,183,179,255);
+        font-weight: bold;
+        color: white;
+        /* transform: translateY(-50%); */
+        position: relative;
+        cursor: pointer;
+    }
+    
+    #header p{
+        margin: 55px 0px 40px;
+        font-size: 20px;
+        line-height: 18px;
+        color: rgb(127, 228, 228);
+    }
+    
+    p{
+        margin: 20px 0px 40px;
+        font-size: 20px;
+        line-height: 18px;
+        color: aqua;
+    }
+    
+    .header-text button{
+        margin-top: 20px;
+        margin-bottom: 60px;
+    }
   
-  
+}
   
   
