@@ -19,17 +19,10 @@
             <img src="{% static 'images/logo.png' %}" alt="logo" class="logo">
             <div class="header-text">
                 <!-- <br> -> to break a line to next line -->
-                <h1>Diet Planning and Recipe Recommendation</h1>
-                <span class="square"></span>
+                <h1>Your Personal Diet Planner & Recipe Recommender</h1>
                 <p>HealthFreak without the “freak” part</p>
-                <button class="common-btn"><span></span>SIGN UP NOW</button>
-                <a href="{% url 'scan' %}"><button class="common-btn"><span></span>Scan Label</button></a>
-                <div class="line">
-                    <span class="line-1"></span><br>
-                    <span class="line-2"></span><br>
-                    <span class="line-3"></span><br>
-                    <span class="line-4"></span>
-                </div>
+                <a href="{% url 'scan' %}"><button class="common-btn"><span></span>SCAN NOW</button></a>
+                <a href="#"><button class="common-btn"><span></span>RECOMMEND</button></a>
             </div>
         </div>
     </section>
@@ -39,38 +32,11 @@
             <li><a href="#header">HOME</a></li>
             <li><a href="#features">FEATURES</a></li>
             <li><a href="#about">ABOUT US</a></li>
-            <li><a href="#">LOG IN</a></li>
-            <li><a href="#">SIGN UP</a></li>
+            <li><a href="#">SCAN NOW</a></li>
+            <li><a href="#">RECOMMEND FOOD</a></li>
         </ul>
     </nav>
     <img src="{% static 'images/menu.png' %}" alt="menu" id="menuBtn">
-
-    <!-- ABOUT
-
-    <section id="about">
-        <div class="about-left-col">
-            <img src="images/about.png" alt="about">
-        </div>
-        <div class="about-right-col">
-            <div class="about-text">
-                <h1>About Us</h1>
-                <span class="square"></span>
-                <p>tttttttttttttttttvsnjbsjbsjgklsnkgnsnsngklnskgnksng<br>
-                    ksgknskngksngksnkngksngksnkngksnkgnsklnksnnsliktngs<br>
-                    jgipnsklngksnkldgianiongsklngklmhg</p><br><br>
-                    <div class="line">
-                        <span class="line-1"></span><br>
-                        <span class="line-2"></span><br>
-                        <span class="line-3"></span><br>
-                        <span class="line-4"></span>
-                    </div>
-
-                <h2>fknsjngafnakdamlwjriowteiiiiiireuyrgeurg</h2>
-                <h3>----------------AM</h3>
-            </div>
-        </div>
-
-    </section> -->
 
     <!-- FEATURES -->
 
@@ -87,15 +53,7 @@
                 <p>Based on your desired taste</p>
             </div>
         </div>
-        <div class="feature-btn">
-            <div class="line">
-                <span class="line-1"></span><br>
-                <span class="line-2"></span><br>
-                <span class="line-3"></span><br>
-                <span class="line-4"></span>
-            </div>
-            <button class="common-btn">Start Free Trial</button>
-        </div>
+        <hr>
     </section>
 
     <!-- courses
@@ -199,8 +157,8 @@
             <div class="footer-right-col">
                 <div class="footer-info">
                     <div class="copyright-text">
-                        <small>support@abc.com</small><br>
-                        <small>copyright 2020 abc</small>
+                        <small>support@foodvisor.com</small><br>
+                        <small>copyright 2022 foodvisor</small>
                     </div>
                     <div class="footer-logo">
                         <img src="{% static 'images/logo.png' %}" alt="logo">

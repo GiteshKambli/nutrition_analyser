@@ -13,12 +13,13 @@ body::-webkit-scrollbar {
 body {
     -ms-overflow-style: none;  /* IE and Edge */
     scrollbar-width: none;  /* Firefox */
+    min-height: fit-content;
 }
 
 #header{
     height: 100vh;
     background-image: url(../MainPage/images/food1.jpg);
-    background-image: linear-gradient(rgba(0,0,0,0.75),rgba(0,0,0,0.75)), url(../MainPage/images/food1.jpg);
+    background-image: linear-gradient(rgba(0,0,0,0.65),rgba(0,0,0,0.65)), url(../MainPage/images/food1.jpg);
     background-position: center;
     background-size: cover;
 }
@@ -26,7 +27,7 @@ body {
 #header h1{
     font-size: 70px;
     color: white;
-    margin-top: -40px;
+    /* margin-top: -40px; */
     /* rgba(73,183,179,255) */
 }
 
@@ -37,31 +38,23 @@ body {
 
 .logo{
     margin-top: 30px;
-    width: 200px;
+    width: 10vw;
 }
 
 .header-text{
-    max-width: 900px;
-    margin-top: 140px;
-}
-
-.square{
-    height: 12px;
-    width: 12px;
-    display: inline-block;
-    background: rgba(73,183,179,255);
-    margin: 15px 0;
+    text-align: center;
+    max-width: 100vw;
+    margin-top: 20vh;
 }
 
 .common-btn{
     padding: 18px 40px;
-    width: 200px;
+    width: 15px;
     text-align: center;
     border-radius: 25px;
-    background-color: transparent;
     outline: none;
     background-color: rgba(73,183,179,255);
-    border: 0.2px solid black;
+    border: 0.2px solid rgba(73,183,179,255);
     font-weight: bold;
     color: white;
     font-weight: bolder;
@@ -70,42 +63,21 @@ body {
 
 #header .common-btn{
     padding: 20px 40px;
-    width: 200px;
+    width: 180px;
     text-align: center;
-    border-radius: 25px;
-    background-color: transparent;
+    border-radius: 30px;
     margin: 50px 30px 0px 0px;
     outline: none;
     border: 2px solid rgba(73,183,179,255);
     font-weight: bold;
     color: white;
-    transform: translateY(-50%);
     position: relative;
     cursor: pointer;
 }
 
-#header span{
-    background: rgba(73,183,179,255);
-    height: 100%;
-    width: 0;
-    border-radius: 25px;
-    position: absolute;
-    left: 0;
-    bottom: 0;
-    z-index: -1;
-    transition: 0.5s;    
-}
-
-#header  .common-btn:hover span{
-    width: 100%;
-}
-
-/* #header .common-btn:hover{
-    border: none;
-} */
 
 #header p{
-    margin: 45px 0px 40px;
+    margin: 55px 0px 40px;
     font-size: 20px;
     line-height: 18px;
     color: rgb(127, 228, 228);
@@ -123,35 +95,6 @@ p{
     margin-bottom: 60px;
 }
 
-.line-1{
-    width: 15px;
-    height: 15px;
-    background: rgba(73,183,179,255);
-    display: inline-block;
-}
-.line-2{
-    width: 80px;
-    height: 1px;
-    background: rgba(73,183,179,255);
-    display: inline-block;
-}
-.line-3{
-    width: 60px;
-    height: 1px;
-    background: rgba(73,183,179,255);
-    display: inline-block;
-}
-.line-4{
-    width: 40px;
-    height: 1px;
-    background: rgba(73,183,179,255);
-    display: inline-block;
-}
-
-.line{
-    line-height: 8px;
-}
-
 #sideNav{
     font-weight: bold;
     width: 250px;
@@ -165,63 +108,67 @@ p{
 }
 
 nav ul li{
+    float: r;
     list-style: none;
-    margin: 50px 20px;
+    margin: 60px 20px;
 }
 
 nav ul li a{
     text-decoration: none;
     color: white ;
-}
+} 
 
 #menuBtn{
-    width: 50px;
-    position: fixed;
+    width: 40px;
+    position: absolute;
     right: 65px;
-    top: 35px;
+    top: 45px;
     z-index: 2;
     cursor: pointer;
 }
 
-/* about, offer */
+/* about, offer  */
 
-/* #about, #offer{
-    padding: 100px 0;
+#about1{
+    padding: 50px 0;
     display: flex;
     align-items: center;
     flex-wrap: wrap;
 }
 
-.about-left-col{
+.about1-left-col{
     flex-basis: 50%;
 }
 
-.about-left-col img{
-    width: 100%;
+.about1-left-col img{
+    margin-left: 250px;
+    width: 80%;
 }
 
-.about-right-col{
+.about1-right-col{
     flex-basis: 50%;
-    text-align: right;
+    text-align: center;
+    align-items: center;
 }
 
-.about-text{
-    max-width: 500px;
-    margin-right: 100px;
+.about1-text{
+    max-width: 50%;
+    text-align: center;
+    margin-right: 250px;
     display: inline-block;
 }
 
-.about-text h2{
-    margin: 50px 0 10px;
-    font-size: 28px;
+.about1-text h1{
+    margin: 100px 0 20px;
+    font-size: 32px;
     font-style: italic;
 }
-.about-text h3{
-
+.about1-text p{
+    margin-top: 20px;
     font-size: 20px;
-    font-style: italic;
-    color: gray;
-} */
+    font-style: normal;
+    color: grey;
+}
 
 /* features */
 #features{
@@ -252,6 +199,7 @@ nav ul li a{
     width: 100%;
     margin-bottom: -50px;
 }
+
 
 .feature-col{
     flex-basis: 25%;
@@ -426,9 +374,20 @@ hr{
     flex-basis: 40%;
 }
 
-@media only screen and (max-width: 1000px){
+/********** Large devices only **********/
+@media (min-width: 1200px) {
     #header{
         height: 100vh;
+        background-image: url(../MainPage/images/food1.jpg);
+        background-image: linear-gradient(rgba(0,0,0,0.65),rgba(0,0,0,0.65)), url(../MainPage/images/food1.jpg);
+        background-position: center;
+        background-size: cover;
+    }
+  }
+
+@media only screen and (max-width: 1000px){
+    #header{
+        height: 80vh;
         background-image: url(../MainPage/images/food1.jpg);
         background-image: linear-gradient(rgba(0,0,0,0.75),rgba(0,0,0,0.75)), url(../MainPage/images/food1.jpg);
         background-position: center;
@@ -445,13 +404,14 @@ hr{
     }
     
     .header-text{
-        margin-top: 40px;
+        margin-top: 100px;
+        text-align: center;
     }
     
     #header p{
-        color: aqua;
+        color:  aqua;
         padding: 20px;
-        margin: 30px 10px 10px 10px;
+        margin: 30px 10px 80px 10px;
     }
 
     #header h1{
@@ -460,8 +420,8 @@ hr{
         font-size: 40px;
         padding: 20px;
         margin: 10px 10px 10px 10px;
-
     }
+    
     #menuBtn{
         width: 40px;
         right: 50px;
@@ -471,14 +431,14 @@ hr{
         padding: 20px 40px;
         width: 175px;
         text-align: center;
-        border-radius: 25px;
-        background-color: transparent;
+        border-radius: 30px;
+        background-color: rgba(73,183,179,255);
         margin: 100px 10px 10px 15px;
         border: 2px solid rgba(73,183,179,255);
         font-weight: bolder;
     }
     
-    .common-btn{
+    /* .common-btn{
         padding: 10px 16px;
         background-color: transparent;
         outline: none;
@@ -487,7 +447,7 @@ hr{
         cursor: pointer;
         color: black;
         font-weight: bolder;
-    }
+    } */
 
     .feature-btn{
         margin: 0px auto 0;
@@ -519,7 +479,7 @@ hr{
     }
 
     .about-left-col, .about-right-col{
-        flex-basis: 100%;
+        flex-basis: 50%;
     }
     .about-text{
         margin: 50px 50px 0;
@@ -553,3 +513,269 @@ hr{
         margin-bottom: 30px;
     }
 }
+
+
+  
+  /********** Medium devices only **********/
+  @media (min-width: 992px) and (max-width: 1199px) {
+    #header{
+        height: 90vh;
+        background-image: url(../MainPage/images/food1.jpg);
+        background-image: linear-gradient(rgba(0,0,0,0.65),rgba(0,0,0,0.65)), url(../MainPage/images/food1.jpg);
+        background-position: center;
+        background-size: cover;
+    }
+    
+    #header h1{
+        font-size: 50px;
+        color: white;
+        margin-bottom: 10px;
+    } 
+    
+    .logo{
+        width: 150px;
+    }
+
+    #menuBtn{
+        width: 40px;
+    }
+    
+    #header .common-btn{
+        margin-top: -30px;
+        width: 180px;
+    }
+  }
+  
+  /********** Medium small devices only **********/
+  @media (min-width: 768px) and (max-width: 991px) {
+    #header{
+        height: 80vh;
+        background-image: url(../MainPage/images/food1.jpg);
+        background-image: linear-gradient(rgba(0,0,0,0.65),rgba(0,0,0,0.65)), url(../MainPage/images/food1.jpg);
+        background-position: center;
+        background-size: cover;
+    }
+    
+    #header h1{
+        font-size: 40px;
+        color: white;
+        margin-top: -80px;
+    }
+    
+    .container{
+        margin-right: 100px;
+        margin-left: 100px;
+    }
+    
+    .logo{
+        margin-top: 40px;
+        width: 150px;
+    }
+    
+    .header-text{
+        text-align: center;
+        max-width: 100vw;
+        margin-top: 20vh;
+    }
+    
+    /* .common-btn{
+        padding: 18px 40px;
+        width: 15vw;
+        text-align: center;
+        border-radius: 25px;
+        outline: none;
+        background-color: rgba(73,183,179,255);
+        border: 0.2px solid rgba(73,183,179,255);
+        font-weight: bold;
+        color: white;
+        font-weight: bolder;
+        cursor: pointer;
+    } */
+    
+    #header .common-btn{
+        width: 180px;
+        text-align: center;
+        border-radius: 30px;
+        margin: 10px 30px 20px 30px;
+        outline: none;
+        border: 2px solid rgba(73,183,179,255);
+        font-weight: bold;
+        color: white;
+        position: relative;
+        cursor: pointer;
+    }
+    
+    #header p{
+        margin: 5px 0px 0px 0px;
+        font-size: 20px;
+        line-height: 18px;
+        color: rgb(127, 228, 228);
+    }
+  }
+
+  
+  /********** Extra small devices only **********/
+  @media (min-width: 650px) and (max-width: 767px) {
+    #header{
+        height: 100vh;
+        background-image: url(../MainPage/images/food1.jpg);
+        background-image: linear-gradient(rgba(0,0,0,0.65),rgba(0,0,0,0.65)), url(../MainPage/images/food1.jpg);
+        background-position: center;
+        background-size: cover;
+    }
+    
+    #header h1{
+        font-size: 40px;
+        color: white;
+        margin-top: -50px;
+    }
+    
+    .container{
+        margin-right: 100px;
+        margin-left: 100px;
+    }
+    
+    .logo{
+        margin-top: 30px;
+        width: 150px;
+    }
+    
+    .header-text{
+        text-align: center;
+        max-width: 100vw;
+        margin-top: 20vh;
+    }
+    
+    /* .common-btn{
+        padding: 18px 40px;
+        width: 15vw;
+        text-align: center;
+        border-radius: 25px;
+        outline: none;
+        background-color: rgba(73,183,179,255);
+        border: 0.2px solid rgba(73,183,179,255);
+        font-weight: bold;
+        color: white;
+        font-weight: bolder;
+        cursor: pointer;
+    } */
+    
+    #header .common-btn{
+        padding: 20px 40px;
+        width: 1509x;
+        text-align: center;
+        border-radius: 30px;
+        /* background-color: transparent; */
+        margin: 10px 30px 0px 0px;
+        outline: none;
+        border: 2px solid rgba(73,183,179,255);
+        font-weight: bold;
+        color: white;
+        /* transform: translateY(-50%); */
+        position: relative;
+        cursor: pointer;
+    }
+    
+    #header p{
+        margin: 55px 0px 40px;
+        font-size: 20px;
+        line-height: 18px;
+        color: rgb(127, 228, 228);
+    }
+    
+    p{
+        margin: 20px 0px 40px;
+        font-size: 20px;
+        line-height: 18px;
+        color: aqua;
+    }
+    
+    .header-text button{
+        margin-top: 20px;
+        margin-bottom: 60px;
+    }
+    
+  }
+  
+  
+  /********** Super extra small devices Only :-) (e.g., iPhone 4) **********/
+  @media (max-width: 649px) {
+    #header{
+        height: 100vh;
+        background-image: url(../MainPage/images/food1.jpg);
+        background-image: linear-gradient(rgba(0,0,0,0.65),rgba(0,0,0,0.65)), url(../MainPage/images/food1.jpg);
+        background-position: center;
+        background-size: cover;
+    }
+    
+    #header h1{
+        margin-top: -30px;
+        font-size: 40px;
+        color: white;
+        text-align: center;
+
+    }
+    
+    .logo{
+        margin-top: 40px;
+        width: 100px;
+    }
+    
+    .header-text{
+        text-align: center;
+        max-width: 100vw;
+        margin-top: 20vh;
+    }
+    
+    .common-btn{
+        padding: 18px 40px;
+        width: 15vw;
+        text-align: center;
+        align-items: center;
+        border-radius: 25px;
+        outline: none;
+        background-color: rgba(73,183,179,255);
+        border: 0.2px solid rgba(73,183,179,255);
+        font-weight: bold;
+        color: white;
+        font-weight: bolder;
+        cursor: pointer;
+    }
+    
+    #header .common-btn{
+        padding: 20px 40px;
+        width: 180px;
+        text-align: center;
+        border-radius: 30px;
+        /* background-color: transparent; */
+        margin: 0px 20px 0px 20px;
+        outline: none;
+        border: 2px solid rgba(73,183,179,255);
+        font-weight: bold;
+        color: white;
+        /* transform: translateY(-50%); */
+        position: relative;
+        cursor: pointer;
+    }
+    
+    #header p{
+        margin: 15px 0px 40px;
+        font-size: 20px;
+        line-height: 18px;
+        color: rgb(127, 228, 228);
+    }
+    
+    p{
+        font-size: 20px;
+        line-height: 18px;
+        color: aqua;
+    }
+    
+    .header-text button{
+        margin-top: 20px;
+        margin-bottom: 60px;
+    }
+  
+}
+  
+  
