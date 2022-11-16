@@ -14,10 +14,10 @@
 <body style="background-image: linear-gradient(rgba(0,0,0,0.75),rgba(0,0,0,0.75)), url({% static 'images/food.jpg' %})">
     <div class="container">
         {% if nutrition %}
-            <h3 style="color:white">Results:</h3>
+            <div class="title"><h3 style="color:white">Results:</h3></div>
             {% for key, val in nutrition.items %}
                 <div>
-                <p style="color:white">{{ key }} : {{ val }}</p>
+                <p style="color:#EDEADE">{{ key }} :</p>
                 </div>
                 <progress id="file" value="{{ val }}" max="100"> 32% </progress>
             {% endfor %}
