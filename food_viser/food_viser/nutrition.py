@@ -24,97 +24,113 @@ def nutrients_classifier(nutrition_dict):
     total_fat, saturated_fat, sugar = 0, 0, 0
 
     for nutrient in nutrition_dict.keys():
-        val = nutrition_dict[nutrient]
-        if not val:
-            nutrition_dict[nutrient] = 0.0
+        try:
+            val = nutrition_dict[nutrient]
+            if not val:
+                nutrition_dict[nutrient] = 0.0
 
-        else:
-            if val.endswith('g') or val.endswith('9'):
-                val = val[:-1]
-
-                if val.endswith('m'):
+            elif val:
+                if val.endswith('g') or val.endswith('9'):
                     val = val[:-1]
-                    if val == 'o' or val == 'O':
-                        val = 0.0
+
+                    if val.endswith('m'):
+                        val = val[:-1]
+                        if val == 'o' or val == 'O':
+                            val = 0.0
+                        else:
+                            val = float(val)
+
                     else:
-                        val = float(val)
+                        if val == 'o' or val == 'O':
+                            val = 0.0
+                        else:
+                            val = float(val)
 
-                else:
-                    if val == 'o' or val == 'O':
-                        val = 0.0
-                    else:
-                        val = float(val)
+                try:
+                    val = float(val)
+                except ValueError:
+                    continue
 
-            val = float(val)
+                if nutrient == 'calories':
+                    val = val / 9
+                    if val > 100:
+                        val = 100
+                    class_dict['Calories'] = val
 
-            if nutrient == 'calories':
-                val = val / 9
-                if val > 100:
-                    val = 100
-                class_dict['Calories'] = val
+                elif nutrient == 'total_fat':
+                    total_fat = val
 
-            elif nutrient == 'total_fat':
-                total_fat = val
+                elif nutrient == 'total_carbs':
+                    class_dict['Carbohydrates'] = val
 
-            elif nutrient == 'total_carbs':
-                class_dict['Carbohydrates'] = val
+                elif nutrient == 'fiber':
+                    try:
+                        class_dict['Carbohydrates'] -= val
+                    except TypeError:
+                        pass
+                elif nutrient == 'saturated_fat':
+                    saturated_fat = val
 
-            elif nutrient == 'fiber':
-                class_dict['Carbohydrates'] -= val
+                elif nutrient == 'trans_fat':
+                    continue
 
-            elif nutrient == 'saturated_fat':
-                saturated_fat = val
+                elif nutrient == 'total_sugar':
+                    sugar = val
 
-            elif nutrient == 'trans_fat':
+                elif nutrient == 'protein':
+                    try:
+                        class_dict['Carbohydrates'] -= val
+                    except TypeError:
+                        pass
+                elif nutrient == 'sodium':
+                    val = val / 3
+                    if val > 120:
+                        val = 100
+                    class_dict['Sodium'] = val
+
+                elif nutrient == 'potassium':
+                    val = val / 5
+                    if val > 100:
+                        val = 100
+                    class_dict['Potassium'] = val
+
+                elif nutrient == 'cholesterol':
+                    val = val / 300
+                    if val > 100:
+                        val = 100
+                    class_dict['Cholesterol'] = val
+            else:
                 continue
 
-            elif nutrient == 'total_sugar':
-                sugar = val
-
-            elif nutrient == 'protein':
-                class_dict['Carbohydrates'] -= val
-
-            elif nutrient == 'sodium':
-                val = val / 3
-                if val > 120:
-                    val = 100
-                class_dict['Sodium'] = val
-
-            elif nutrient == 'potassium':
-                val = val / 5
-                if val > 100:
-                    val = 100
-                class_dict['Potassium'] = val
-
-            elif nutrient == 'cholesterol':
-                val = val / 300
-                if val > 100:
-                    val = 100
-                class_dict['Cholesterol'] = val
+        except ValueError and TypeError:
+            continue
 
     carbs = class_dict['Carbohydrates']
 
-    carbs = (carbs / 45) * 100
-    total_fat = (total_fat - 3.0) * 8
-    saturated_fat = ((saturated_fat - 1.5) * 1000) / 350
-    sugar = ((sugar - 5) * 1000) / 175
+    try:
+        carbs = (carbs / 45) * 100
+        total_fat = (total_fat - 3.0) * 8
+        saturated_fat = ((saturated_fat - 1.5) * 1000) / 350
+        sugar = ((sugar - 5) * 1000) / 175
 
-    if carbs > 100:
-        carbs = 100
+        if carbs > 100:
+            carbs = 100
 
-    if sugar > 100:
-        sugar = 100
+        if sugar > 100:
+            sugar = 100
 
-    if total_fat > 100:
-        total_fat = 100
+        if total_fat > 100:
+            total_fat = 100
 
-    if saturated_fat > 100:
-        saturated_fat = 100
+        if saturated_fat > 100:
+            saturated_fat = 100
+    except TypeError:
+        pass
 
     class_dict['Sugars'] = sugar
     class_dict['Fats'] = (total_fat + saturated_fat) / 2
     class_dict['Carbohydrates'] = carbs
-    
+
     return class_dict
 
 
