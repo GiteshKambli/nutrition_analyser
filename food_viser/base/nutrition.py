@@ -11,6 +11,7 @@ localization_model = torch.hub.load('ultralytics/yolov5', 'custom', best_weights
 reader = easyocr.Reader(['en'], gpu=False)
 
 
+
 def nutrients_classifier(nutrition_dict):
     """
     Function to classify the amount of nutrients as healthy or not
