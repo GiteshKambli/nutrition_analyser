@@ -1,13 +1,18 @@
 from django.contrib import admin
+from django.contrib.auth.views import LogoutView
 from django.urls import path, include
-from . import views
+from .views import *
 
 
 urlpatterns = [
     path("admin/", admin.site.urls),
-    path("", views.home, name='home'),
-    path('scan/', views.scan_label, name="scan"),
-    path('recipe-search', views.recipe_search, name="recipe-search"),
+    path('', mainPage.as_view(), name='main'),
+    path('login/', UserLoginView.as_view(), name='login'),
+    path('register/', RegisterPage.as_view(), name='register'),
+    path('logout/', LogoutView.as_view(next_page='main'), name='logout'),
+    path('scan/', scan_label, name="scan"),
+    path('nutrition_profile/', NutritionProfileView.as_view(), name="nutrition_profile"),
+    path('recipe-search/', recipe_search, name="recipe-search")
 ]
 
 

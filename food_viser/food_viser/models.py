@@ -12,3 +12,7 @@ class NutritionProfile(models.Model):
                                       choices=[('sedentary', 'Sedentary'), ('light', 'Light'), ('moderate', 'Moderate'),
                                                ('high', 'High')])
     goal = models.CharField(max_length=8, choices=[('lose', 'Lose'), ('maintain', 'Maintain'), ('gain', 'Gain')])
+
+
+# class Fixed20Recipes(models.Model):
+#     name = models.CharField()
