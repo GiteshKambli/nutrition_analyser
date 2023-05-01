@@ -6,7 +6,7 @@ from django.conf.urls.static import static
 urlpatterns = [
     path("", views.home, name='home'),
     path("login/", views.login_user, name='login'),
-    path('scan/', views.scan_label, name="scan"),
+    # path('scan/', views.scan_label, name="scan"),
     # path('search-recipe/', views.search_recipe, name='search-recipe'),
 ]
 # if settings.DEBUG:

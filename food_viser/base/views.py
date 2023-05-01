@@ -1,7 +1,6 @@
 from django.shortcuts import render
 from .forms import UserImageForm
 from .nutrition import get_nutrition
-from .models import UploadImage
 import numpy as np
 import urllib.request
 import cv2
@@ -16,7 +15,6 @@ from django.conf import settings
 
 from tensorflow.python.keras.backend import set_session
 import matplotlib.pyplot as plt
-import numpy as np
 
 import datetime
 import traceback

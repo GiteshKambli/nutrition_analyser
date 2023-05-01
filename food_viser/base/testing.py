@@ -1,4 +1,4 @@
-from get_recipe import search_recipe
+from food_viser.food_viser.get_recipe import search_recipe
 
 recipes = search_recipe(calories = 2000,
                         health = 'alcohol-free',
