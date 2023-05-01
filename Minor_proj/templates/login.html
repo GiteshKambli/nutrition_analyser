@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Foodv!sor</title>
+</head>
+<body>
+    {% extends 'structure.html' %}
+    {% block content %}
+
+    <div class="header-bar">
+        <h1 style='color:white;'>LOGIN</h1>
+    </div>
+    <div class='card-body'>
+    <form method='POST'>
+        {% csrf_token %}
+        <label style='margin-bottom:10px; margin-top:10px; height: 1.5rem;'>
+            {{form.username.label}}
+        </label>
+        {{form.username}}
+        <label style='margin-bottom:10px; margin-top:15px; height: 1.5rem;'>
+            {{form.password.label}}
+        </label>
+        {{form.password}}
+        <input class='button' type='submit' value='Login'>
+    </form>
+
+    <p style='text-align: center;'>Don't have an account? <a href="{% url 'register' %}">Register</a></p>
+    <div>
+    {% endblock content %}
+    
+</body>
+</html>

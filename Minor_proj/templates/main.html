@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <title>Foodv!sor</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@500&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Ysabeau:wght@800&display=swap" rel="stylesheet">
+</head>
+    {% load static %}    
+    <link rel="stylesheet"  href="{% static 'main.css'%}">
+    <body>
+    <header>
+        {% comment %} <p>{{request.user}}</p>
+        <hr> {% endcomment %}
+        <!-- NavBar -->
+        <nav>
+            <!-- left-side-button -->
+            <div class="left-side-menu">
+                <div class="logo">
+                    <a href="{% url 'main' %}">
+                        <img src= {% static "images/logo_new.jpg"%} alt="Logo">
+                    </a>
+                </div>
+
+                <div class="sub-menu">
+                    <a href="#section-one">
+                        <li>Home</li>
+                    </a>
+                    <a href="#section-two">
+                        <li>About Us</li>
+                    </a>
+                    <a href="#section-three">
+                        <li>Goals</li>
+                    </a>
+                    <a href="#section-fourth">
+                        <li>Tips</li>
+                    </a>
+                </div>
+            </div>
+            <!-- right-side-button -->
+            <div class="right-side-menu">
+            <div class="sub-menu">
+                {% if request.user.is_authenticated %}
+                <a href="#">
+                    <li><i class="fa fa-solid fa-user" style="color: #49b7b3;"></i>  {{request.user|title}}</li>
+                </a>
+                <button onclick="window.location.href='{% url 'logout' %}'">Log Out</button>
+                {% else %}
+                <a href={% url 'login' %}>
+                    <li>Log In</li>
+                </a>
+                <button  onclick="window.location.href='{% url 'register' %}'">Register</button>
+                {% endif %}
+            </div>
+        </div>
+        </nav>
+    </header>
+
+    <!-- main-body -->
+    <section class="main-section" id="section-one">
+        <!-- left-side-info -->
+        <div class="left-side-info">
+            <h1>Personal Diet Planner & Recipe Recommender</h1>
+            <p>
+                HealthFreak without the “freak” part.
+                <br>
+                Take control of your goals. Track calories, breakdown ingredients and move towards a healthy lifestyle.  
+            </p>
+            <div class="button-group">
+                {% if request.user.is_authenticated %}
+
+                {% comment %} SCAN URL {% endcomment %}
+                <a href="#">
+                    <button class="scan">Scan</button>
+                </a> 
+                {% comment %} RECOMMEND URL {% endcomment %}
+                <a href="#">
+                    <button class="recommmend">Recommend</button>
+                </a>
+                {% else %}
+                <a href={% url 'register' %}>
+                    <button class="scan">Let's Get Started</button>
+                </a> 
+                {% endif %}
+            </div>
+        </div>
+        <!-- right-side-info -->
+        <div class="right-side-info">
+            <img src={% static "images/main.png"%} alt="mainpage"/>
+        </div>
+
+    </section>
+
+    <!-- 2nd section -->
+    <section class="common-section" id="section-two">
+        <!-- left-side-section2 -->
+        <div class="left-side">
+            <figure>
+                <img src={% static "images/section2.png"%} alt="section2">
+            </figure>
+        </div>
+        <!-- right-side-section2 -->
+        <div class="right-side">
+            <h2>Your Daily Healthy App</h2>
+            <p>
+                Take control of your goals. Track calories, breakdown ingredients and move towards a healthy lifestyle.  
+            </p>
+            <div class="button-group">
+                <button class="common-button">Get Started</button>
+                <button class="common-button-normal">How it works?</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- section3 -->
+    <section class="section-third" id="section-three">
+        <h2>Tools For Your Goal</h2>
+        <p>
+            Take control of your goals. Track calories, breakdown ingredients and move towards a healthy lifestyle.   
+        </p>
+        <div class="section-third-task">
+            <div class="task-1">
+                <img src={% static "images/s1.png"%} alt="icon1">
+                <h3>Scan Food Item</h3>
+                <p>To know insights about the food</p>
+            </div>
+            <div class="task-2">
+                <img src={% static "images/s2.png"%} alt="icon2">
+                <h3>Get Recommendation</h3>
+                <p>Based on your desired taste</p>
+            </div>
+            <div class="task-3">
+                <img src={% static "images/s3.png"%} alt="icon3">
+                <h3>Stay Healthy</h3>
+                <p>Based on recommended food and keeping track of what you eat!</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- section4 -->
+    <section class="common-section" id="section-fourth">
+        <!-- right-side -->
+        <div class="right-side">
+            <h2>Know what you eat!</h2>
+            <p>
+                Take control of your goals. Track calories, breakdown ingredients and move towards a healthy lifestyle.   
+            </p>
+            <div class="button-group">
+                <button class="common-button">Get Started</button>
+                <button class="common-button-normal">How it works?</button>
+            </div>
+        </div>
+        <!-- left-side -->
+        <div class="left-side">
+                <img src={% static "images/scan.png"%} alt="section2">
+        </div>
+    </section>
+
+    <!-- section5 -->
+    <section class="common-section" id="section-five">
+        <!-- left-side -->
+        <div class="left-side">
+            <figure>
+                <img src= {% static "images/recommend.png"%} alt="section5">
+            </figure>
+        </div>
+        <!-- right-side -->
+        <div class="right-side">
+            <h2>We Will Take Care Of Your Fitness Goals</h2>
+
+            <div class="fitness-goals">
+                <div class="rule1">
+                    <h3>
+                    <i class="fa fa-cog fa-spin"></i>
+                        Track fitness goals
+                    </h3>
+                    <p>
+                        Take control of your goals. Track calories, breakdown ingredients and move towards a healthy lifestyle.     
+                    </p>
+                </div>
+                <div class="rule2">
+                    <h3>
+                    <i class="fa fa-cog fa-spin"></i>
+                        Track your daily diet
+                    </h3>
+                    <p>
+                        Take control of your goals. Track calories, breakdown ingredients and move towards a healthy lifestyle.     
+                    </p>
+                </div>
+                <div class="rule3">
+                    <h3>
+                    <i class="fa fa-cog fa-spin"></i>
+                        Track what you eat
+                    </h3>
+                    <p>
+                        Take control of your goals. Track calories, breakdown ingredients and move towards a healthy lifestyle.     
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- footer-section -->
+    <footer>
+        <div class="logo-div">
+            <img src={% static "images/logo_new1.png"%} alt="logo">
+            <p> <small>support@foodvisor.com</small><br>
+                <small>@2023 foodv!sor</small></p>
+        </div>
+        <div class="footer-menu">
+            <div class="footer-div-2">
+                <h4>Product</h4>
+                <a href="#"><li>Our Plan</li></a> 
+                <a href="#"><li>Free Trial</li></a> 
+            </div>
+            <div class="footer-div-3">
+                <h4>About Us</h4>
+                <a href="#"><li>Request Demo</li></a> 
+                <a href="#"><li>FAQs</li></a> 
+            </div>
+            <div class="footer-div-4">
+                <h4>Support</h4>
+                <a href="#"><li>Features</li></a> 
+                <a href="#"><li>Contact Us</li></a> 
+            </div>
+        </div>
+    </footer>
+</body>
+</html>
