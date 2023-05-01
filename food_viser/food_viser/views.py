@@ -22,3 +22,7 @@ def scan_label(request):
         return render(request, 'scan.html', {'nutrition': nutrition[0]})
 
     return render(request, 'scan.html')
+
+
+def recipe_search(request):
+    return render(request, 'recipe.html')

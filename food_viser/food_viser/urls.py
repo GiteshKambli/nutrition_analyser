@@ -7,6 +7,7 @@ urlpatterns = [
     path("admin/", admin.site.urls),
     path("", views.home, name='home'),
     path('scan/', views.scan_label, name="scan"),
+    path('recipe-search', views.recipe_search, name="recipe-search"),
 ]
 
 
