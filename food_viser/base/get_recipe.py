@@ -57,30 +57,39 @@ def search_recipe(calories, health, cuisineType, mealType,carbMax, fatMax, sugar
     
 
 if __name__ == "__main__":
-    response = requests.get(url='https://api.edamam.com/api/recipes/v2', params=params, headers=headers)
-    response.raise_for_status()
-    data = response.json()
-    print(len(data['hits']))
-    pprint(data['hits'])
+    # response = requests.get(url='https://api.edamam.com/api/recipes/v2', params=params, headers=headers)
+    # response.raise_for_status()
+    # data = response.json()
+    # print(len(data['hits']))
+    # pprint(data['hits'])
+    recipes = {}
     
-    # recipes = {}
+    for query in ['fried','fish','rice','salad']:
+        params['q'] = query
+        response = requests.get(url='https://api.edamam.com/api/recipes/v2', params=params, headers=headers)
+        response.raise_for_status()
+        data = response.json()
+        print(len(data['hits']))
+        pprint(data['hits'])
+        
+
+        
+        for i in data['hits'][:5]:
+            recipes[i['recipe']['label']] = {
+                'image': i['recipe']['image'],
+                'yield': i['recipe']['yield'],
+                'calories': i['recipe']['calories'],
+                'totalNutrients': i['recipe']['totalNutrients'],
+                'digest': i['recipe']['digest'],
+            }
+        pprint(recipes)
+        
+    with open(r"D:\Github Repository\nutrition_analyser\food_viser\base\recipes.json",'r') as f:
+        data = json.load(f)
     
-    # for i in data['hits'][:5]:
-    #     recipes[i['recipe']['label']] = {
-    #         'image': i['recipe']['image'],
-    #         'yield': i['recipe']['yield'],
-    #         'calories': i['recipe']['calories'],
-    #         'totalNutrients': i['recipe']['totalNutrients'],
-    #         'digest': i['recipe']['digest'],
-    #     }
-    # pprint(recipes)
+    data['recipes'].update(recipes)
     
-    # with open(r"D:\Github Repository\nutrition_analyser\food_viser\base\recipes.json",'r') as f:
-    #     data = json.load(f)
-    
-    # data['recipes'].update(recipes)
-    
-    # with open(r"D:\Github Repository\nutrition_analyser\food_viser\base\recipes.json",'w') as f:
-    #     json.dump(data,f,indent = 4)
+    with open(r"D:\Github Repository\nutrition_analyser\food_viser\base\recipes.json",'w') as f:
+        json.dump(data,f,indent = 4)
 
     
