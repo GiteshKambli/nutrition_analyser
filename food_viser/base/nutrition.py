@@ -1,7 +1,7 @@
 import os
 import cv2
 import easyocr
-import pytesseract
+# import pytesseract
 import torch
 
 yolo_path = '..\label_localization\yolov5_label_localization_runs'
