@@ -75,15 +75,15 @@
                 {% if request.user.is_authenticated %}
 
                 {% comment %} SCAN URL {% endcomment %}
-                <a href="#">
+                <a href="{% url 'scan' %}">
                     <button class="scan">Scan</button>
                 </a> 
                 {% comment %} RECOMMEND URL {% endcomment %}
-                <a href="#">
+                <a href="{% url 'recipe-search' %}">
                     <button class="recommmend">Recommend</button>
                 </a>
                 {% else %}
-                <a href={% url 'register' %}>
+                <a href="{% url 'register' %}">
                     <button class="scan">Let's Get Started</button>
                 </a> 
                 {% endif %}

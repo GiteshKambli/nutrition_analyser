@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <form method="POST" action="{% url 'nutrition_profile' %}">
+    {% csrf_token %}
+    <label for="weight">Weight:</label>
+    <input type="number" name="weight" id="weight" required>
+
+    <label for="age">Age:</label>
+    <input type="number" name="age" id="age" required>
+
+    <label for="height">Height:</label>
+    <input type="number" name="height" id="height" required>
+
+    <label for="gender">Gender:</label>
+    <select name="gender" id="gender" required>
+        <option value="male">Male</option>
+        <option value="female">Female</option>
+    </select>
+
+    <label for="activity_level">Activity Level:</label>
+    <select name="activity_level" id="activity_level" required>
+        <option value="sedentary">Sedentary</option>
+        <option value="light">Light</option>
+        <option value="moderate">Moderate</option>
+        <option value="high">High</option>
+    </select>
+
+    <label for="goal">Goal:</label>
+    <select name="goal" id="goal" required>
+        <option value="lose">Lose</option>
+        <option value="maintain">Maintain</option>
+        <option value="gain">Gain</option>
+    </select>
+
+    <button type="submit">Submit</button>
+</form>
+</body>
+</html>
