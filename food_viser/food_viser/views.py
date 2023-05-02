@@ -5,17 +5,19 @@ from django.shortcuts import render, redirect
 from django.contrib.auth.views import LoginView
 from django.urls import reverse_lazy
 from django.views import View
-from django.views.generic.edit import FormView
+from django.views.generic import DetailView
+from django.views.generic.edit import FormView, CreateView
 # use for profile
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth import login
 
+from .forms import Profile
 from .nutrition import get_nutrition
 from django.core.files.storage import default_storage
 import cv2
 
-from .models import NutritionProfile, Fixed20Recipes
+from .models import Fixed20Recipes, Nutrition
 from .get_recipe import search_recipe
 
 class mainPage(View):
@@ -47,7 +49,7 @@ class RegisterPage(FormView):
     template_name = 'register.html'
     form_class = UserCreationForm
     redirect_authenticated_user = True
-    success_url = reverse_lazy('main')
+    success_url = reverse_lazy('nutrition_profile')
 
     def form_valid(self, form):
         user = form.save()
@@ -77,36 +79,23 @@ def scan_label(request):
     return render(request, 'scan.html')
 
 
-class NutritionProfileView(View):
-    def get(self, request):
-        # Render the template for the form
-        return render(request, 'nutrition_profile_form.html')
+class UserProfile(LoginRequiredMixin, CreateView):
+    model = Nutrition
+    success_url = reverse_lazy('main')
+    template_name = 'nutrition_profile_form.html'
+    form_class = Profile
 
-    def post(self, request):
-        # Get the data from the form
-        weight = request.POST.get('weight')
-        age = request.POST.get('age')
-        height = request.POST.get('height')
-        gender = request.POST.get('gender')
-        activity_level = request.POST.get('activity_level')
-        goal = request.POST.get('goal')
+    def form_valid(self, form):
+        form.instance.user = self.request.user
+        return super(UserProfile, self).form_valid(form)
 
-        # Create a new NutritionProfile object with the data
-        nutrition_profile = NutritionProfile(
-            user=request.user,  # assuming the user is authenticated
-            weight=weight,
-            age=age,
-            height=height,
-            gender=gender,
-            activity_level=activity_level,
-            goal=goal
-        )
 
-        # Save the NutritionProfile object to the database
-        nutrition_profile.save()
-
-        # Render a success message
-        return render(request, 'main.html')
+class NutritionDetail(DetailView):
+    model = Nutrition
+    context_object_name = 'nutrition'
+    template_name = 'nutrition_detail.html'
+    slug_url_kwarg = "user_id"
+    slug_field = "user_id"
 
 
 class RecipeFormView(View):
@@ -133,7 +122,7 @@ class ShowRecipeView(View):
             'diet': diet
         }
         print(data)
-        recipes = search_recipe()
+        # recipes = search_recipe()
         return render(request, 'show_recipe.html')
 
 # def add_fixed_recipes(request):
