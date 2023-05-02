@@ -35,7 +35,7 @@ headers = {
 }
 
 
-def search_recipe(calories, health, cuisineType, mealType, carbMax, fatMax, sugarMax, proMin, ing_no, diet='balanced',
+def search_recipe(calories, health, cuisineType, mealType, carbMax, fatMax, sugarMax, proMin, ing_no = 20, diet='balanced',
                   random=True, q="Vegetables"):
 
     params = {
@@ -59,8 +59,27 @@ def search_recipe(calories, health, cuisineType, mealType, carbMax, fatMax, suga
     response = requests.get(url='https://api.edamam.com/api/recipes/v2', params=params, headers=headers)
     response.raise_for_status()
     data = response.json()
+    
+    recipes = {}
 
-    return data['hits']
+    for recipe in data['hits']:
+        name = recipe['recipe']['label']
+        recipes[name] = {}
+        recipes[name]['image'] = recipe['recipe']['image']
+        recipes[name]['url'] = recipe['recipe']['url']
+        recipes[name]['yield'] = recipe['recipe']['yield']
+        recipes[name]['ingredientLines'] = recipe['recipe']['ingredientLines']
+        recipes[name]['calories'] = recipe['recipe']['calories']
+        recipes[name]['fats'] = recipe['recipe']['totalNutrients']['FAT']['quantity']
+        recipes[name]['carbs'] = recipe['recipe']['totalNutrients']['CHOCDF']['quantity']
+        recipes[name]['sugar'] = recipe['recipe']['totalNutrients']['SUGAR']['quantity']
+        recipes[name]['protein'] = recipe['recipe']['totalNutrients']['PROCNT']['quantity']
+        recipes[name]['url'] = recipe['recipe']['url']
+        recipes[name]['shareAs'] = recipe['recipe']['totalNutrients']['PROCNT']['quantity']
+
+    return recipes
+
+def find_nearest(user_recipes, recipes):
 
 
 if __name__ == "__main__":
@@ -70,29 +89,30 @@ if __name__ == "__main__":
     # print(len(data['hits']))
     # pprint(data['hits'])
     recipes = {}
+    ab = search_recipe(calories = 2000, health = "alcohol-free", cuisineType= "American", mealType = "Breakfast", carbMax= 1000, fatMax = 1000, sugarMax= 1000, proMin = 20)
+    pprint(ab)
+    # for query in ['fried', 'fish', 'rice', 'salad']:
+    #     params['q'] = query
+    #     response = requests.get(url='https://api.edamam.com/api/recipes/v2', params=params, headers=headers)
+    #     response.raise_for_status()
+    #     data = response.json()
+    #     print(len(data['hits']))
+    #     pprint(data['hits'])
 
-    for query in ['fried', 'fish', 'rice', 'salad']:
-        params['q'] = query
-        response = requests.get(url='https://api.edamam.com/api/recipes/v2', params=params, headers=headers)
-        response.raise_for_status()
-        data = response.json()
-        print(len(data['hits']))
-        pprint(data['hits'])
+    #     for i in data['hits'][:5]:
+    #         recipes[i['recipe']['label']] = {
+    #             'image': i['recipe']['image'],
+    #             'yield': i['recipe']['yield'],
+    #             'calories': i['recipe']['calories'],
+    #             'totalNutrients': i['recipe']['totalNutrients'],
+    #             'digest': i['recipe']['digest'],
+    #         }
+    #     pprint(recipes)
 
-        for i in data['hits'][:5]:
-            recipes[i['recipe']['label']] = {
-                'image': i['recipe']['image'],
-                'yield': i['recipe']['yield'],
-                'calories': i['recipe']['calories'],
-                'totalNutrients': i['recipe']['totalNutrients'],
-                'digest': i['recipe']['digest'],
-            }
-        pprint(recipes)
+    # with open(r"recipes2.json", 'r') as f:
+    #     data = json.load(f)
 
-    with open(r"recipes2.json", 'r') as f:
-        data = json.load(f)
+    # data['recipes'].update(recipes)
 
-    data['recipes'].update(recipes)
-
-    with open(r"recipes2.json", 'w') as f:
-        json.dump(data, f, indent=4)
+    # with open(r"recipes2.json", 'w') as f:
+    #     json.dump(data, f, indent=4)
