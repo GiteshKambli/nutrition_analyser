@@ -108,6 +108,7 @@ class RecipeFormView(View):
 class ShowRecipeView(View):
 
     def post(self, request):
+
         recipe_query = request.POST.get('recipe_query', None)
         health = request.POST.get('health', None)
         cuisine_type = request.POST.get('cuisine_type', None)
@@ -228,7 +229,7 @@ class ShowRecipeView(View):
         context = {
             'recipes': sorted_recipes
         }
-        return render(request, 'show_recipe.html', context)
+        return render(request, 'recipe.html', {"recipes": sorted_recipes})
 
 # def add_fixed_recipes(request):
 #     with open(r"C:\Users\Gitesh\OneDrive\Documents\GitHub\nutrition_analyser\food_viser\food_viser\recipes.json", 'r') as f:
