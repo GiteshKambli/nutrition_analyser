@@ -469,23 +469,47 @@ footer div a{
     header, .main-section, .common-section{
         padding: 0 12rem;
     } 
+
+    header nav .left-side-menu .sub-menu{
+        height: inherit;
+        display: flex;
+        margin-right: 0rem;
+        margin-left: -10rem;
+    }
+
     .main-section .right-side-info img{
-        width: 90rem;
-        height: 90rem;
-        /* margin-left: -11rem; */
-        margin-right: 30rem;
+        width: 70rem;
+        height: 70rem;
+        margin-left: -11rem;
+        margin-right: 10rem;
         margin-top: 5rem;
-    }   
+    } 
+    
+    .main-section h1 {
+        width: 55rem;
+        font-size: 6.5rem;
+        line-height: 9rem;
+        margin-bottom: 5rem;
+    }
+    
+    #section-five .right-side{
+        margin-left: 70rem;
+        justify-content: flex-start;
+        padding-top: 5rem;
+        margin-top: -10rem;
+    }
+    
     #section-five .right-side{
         margin-left: 60rem;
         justify-content: flex-start;
         padding-top: 5rem;
+        margin-top: -10rem;
     }
-    
+
     #section-five .right-side h2{
         width: 43rem;
         font-weight: 900;
-        font-size: 4rem;
+        font-size: 5rem;
         line-height: 6.3rem;
     }
     
@@ -503,7 +527,7 @@ footer div a{
 
     
     #section-fourth .right-side{
-        margin-left: 15rem
+        margin-left: 5rem
     }
 
     #section-fourth .right-side h2{
@@ -514,8 +538,41 @@ footer div a{
         width: 100rem;
         height: 100rem;
         margin: 0;
-        margin-left: -15px;
+        margin-left: -70px;
         margin-top: -155px;
+    }
+
+    .common-section .left-side img{
+        width: 70rem;
+        height: 70rem;
+        border-radius: 2rem;
+        margin-left: 0rem;
+        margin-top: 5.5rem;
+    }
+    
+    /* section2 - right- img */
+    .common-section .right-side{
+        width: inherit;
+        height: inherit;
+        display: flex;
+        justify-content: center;
+        align-items: flex-start;
+        flex-direction: column;
+        margin-left: 50rem;
+    }
+
+    .section-third{
+        width: 100%;
+        height: 70rem;
+        background: var(--background-color);
+        padding: 3rem 20rem;
+    }
+    
+    .section-third .section-third-task{
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr;
+        grid-column-gap: 1rem;
+        justify-content: center;
     }
 }
 
