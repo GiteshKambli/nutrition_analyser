@@ -60,26 +60,28 @@ def search_recipe(calories, health, cuisineType, mealType, carbMax, fatMax, suga
     response.raise_for_status()
     data = response.json()
     
-    recipes = {}
+    recipes = []
 
     for recipe in data['hits']:
-        name = recipe['recipe']['label']
-        recipes[name] = {}
-        recipes[name]['image'] = recipe['recipe']['image']
-        recipes[name]['url'] = recipe['recipe']['url']
-        recipes[name]['yield'] = recipe['recipe']['yield']
-        recipes[name]['ingredientLines'] = recipe['recipe']['ingredientLines']
-        recipes[name]['calories'] = float(recipe['recipe']['calories'])/int(recipe['recipe']['yield'])
-        recipes[name]['fats'] = float(recipe['recipe']['totalNutrients']['FAT']['quantity'])/int(recipe['recipe']['yield'])
-        recipes[name]['carbs'] = float(recipe['recipe']['totalNutrients']['CHOCDF']['quantity'])/int(recipe['recipe']['yield'])
-        recipes[name]['sugar'] = float(recipe['recipe']['totalNutrients']['SUGAR']['quantity'])/int(recipe['recipe']['yield'])
-        recipes[name]['protein'] = float(recipe['recipe']['totalNutrients']['PROCNT']['quantity'])/int(recipe['recipe']['yield'])
-        recipes[name]['url'] = recipe['recipe']['url']
-        recipes[name]['shareAs'] = recipe['recipe']['totalNutrients']['PROCNT']['quantity']
+        current_recipe = {}
+        current_recipe['name'] = recipe['recipe']['label']
+        current_recipe['image'] = recipe['recipe']['image']
+        current_recipe['url'] = recipe['recipe']['url']
+        current_recipe['yield'] = recipe['recipe']['yield']
+        current_recipe['ingredientLines'] = recipe['recipe']['ingredientLines']
+        current_recipe['calories'] = float(recipe['recipe']['calories'])/int(recipe['recipe']['yield'])
+        current_recipe['fats'] = float(recipe['recipe']['totalNutrients']['FAT']['quantity'])/int(recipe['recipe']['yield'])
+        current_recipe['carbs'] = float(recipe['recipe']['totalNutrients']['CHOCDF']['quantity'])/int(recipe['recipe']['yield'])
+        current_recipe['sugar'] = float(recipe['recipe']['totalNutrients']['SUGAR']['quantity'])/int(recipe['recipe']['yield'])
+        current_recipe['protein'] = float(recipe['recipe']['totalNutrients']['PROCNT']['quantity'])/int(recipe['recipe']['yield'])
+        current_recipe['url'] = recipe['recipe']['url']
+        current_recipe['shareAs'] = recipe['recipe']['totalNutrients']['PROCNT']['quantity']
+        recipe.append(current_recipe)        
 
     return recipes
 
 def find_nearest(user_recipes, recipes):
+    pass
 
 
 if __name__ == "__main__":
