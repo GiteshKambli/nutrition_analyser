@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@500&display=swap" rel="stylesheet">
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
+        <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+        <title>Foodv!sor</title>
+    </head>
+<body style='background: rgb(63,251,195); background: radial-gradient(circle, rgba(63,251,195,1) 0%, rgba(70,162,252,1) 100%);'>
+    <div class="container mb-5">
+        <h1 class="text-center p-3" style="color: #FAFAFA;  font-size: 4rem; font-family: 'Roboto', sans-serif;">Recipe</h1>
+    <div class="row">
+        <div class="col-sm-15" style=' font-style: bold; border-radius: 30px; opacity: 0.9'>
+            <form method="POST" action="{% url 'show-recipe' %}" class="shadow p-5">
+              {% csrf_token %}
+              <label for="recipe_query" style="margin: 1rem;  font-size: larger; font-family: 'Roboto', sans-serif;">Recipe Query:</label>
+              <input type="text" id="recipe_query" name="recipe_query"><br>
+            
+              <label for="health" style="margin: 1rem; font-size: larger; font-family: 'Roboto', sans-serif;">Health:</label>
+              <select id="health" name="health">
+                <option value="alcohol-cocktail" >Alcohol-Cocktail</option>
+                <option value="alcohol-free">Alcohol-Free</option>
+                <option value="dairy-free">Dairy-Free</option>
+                <option value="egg-free">Egg-Free</option>
+                <option value="fish-free">Fish-Free</option>
+                <option value="gluten-free">Gluten-Free</option>
+                <option value="keto-friendly">Keto-Friendly</option>
+                <option value="low-sugar">Low-Sugar</option>
+                <option value="peanut-free">Peanut-Free</option>
+                <option value="pork-free">Pork-Free</option>
+                <option value="red-meat-free">Red-Meat-Free</option>
+                <option value="vegetarian">Vegetarian</option>
+              </select><br>
+            
+              <label for="diet" style="margin: 1rem;  font-size: larger; font-family: 'Roboto', sans-serif;">Diet:</label>
+              <select id="diet" name="diet">
+                <option value="balanced">Balanced</option>
+                <option value="high-fiber">High-Fiber</option>
+                <option value="high-protein">High-Protein</option>
+                <option value="low-carb">Low-Carb</option>
+                <option value="low-fat">Low-Fat</option>
+              </select><br>
+            
+              <label for="cuisine_type" style="margin: 1rem; font-size: larger; font-family: 'Roboto', sans-serif;">Cuisine Type:</label>
+              <select id="cuisine_type" name="cuisine_type">
+                  <option value="American"> American  </option>
+                  <option value="Asian"> Asian  </option>
+                  <option value="British"> British  </option>
+                  <option value="Caribbean"> Caribbean  </option>
+                  <option value="Central Europe"> Central Europe  </option>
+                  <option value="Chinese"> Chinese  </option>
+                  <option value="Eastern Europe"> Eastern Europe  </option>
+                  <option value="French"> French  </option>
+                  <option value="Indian"> Indian  </option>
+                  <option value="Italian"> Italian  </option>
+                  <option value="Japanese"> Japanese  </option>
+                  <option value="Kosher"> Kosher  </option>
+                  <option value="Mediterranean"> Mediterranean  </option>
+                  <option value="Mexican"> Mexican  </option>
+                  <option value="Middle Eastern"> Middle Eastern  </option>
+                  <option value="Nordic"> Nordic  </option>
+                  <option value="South American"> South American  </option>
+                  <option value="South East Asian"> South East Asian  </option>
+              </select><br>
+            
+              <label for="meal_type" style="margin: 1rem;  font-size: larger; font-family: 'Roboto', sans-serif;">Meal Type:</label>
+              <select id="meal_type" name="meal_type">
+                <option value="dinner">Dinner</option>
+                <option value="lunch">Lunch</option>
+                <option value="breakfast">Breakfast</option>
+                <option value="snacks">Snacks</option>
+              </select><br>
+
+              <input style = '
+                margin-top: 20px;
+                border: 1px solid #49b7b3d9;
+                color: #49b7b3d9;
+                padding: 18px;
+                font-size: 18px;
+                font-weight: bolder;
+                border-radius: 25px;
+                width: 7rem;
+                cursor: pointer;
+                text-decoration: none;
+                margin-inline-start: 0px' 
+                type="submit" value="Submit" class="button">
+                </form>
+                </div>
+            </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js" integrity="sha384-b5kHyXgcpbZJO/tY9Ul7kGkf1S0CWuKcCD38l8YkeH8z8QjE0GmW1gYU5S9FOnJ0" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+</body>
+</html>
