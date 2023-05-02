@@ -20,9 +20,9 @@ for recipe_name in data['recipes']:
 
 print(food_items)
 
-choices = []
+choices = {}
 for i in range(len(food_items)):
-    choices.append((i, food_items[i]))
+    choices[i] = food_items[i]
 
 print(choices)
 class Profile(forms.ModelForm):
