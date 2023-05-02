@@ -70,10 +70,10 @@ def search_recipe(calories, health, cuisineType, mealType, carbMax, fatMax, suga
         recipes[name]['yield'] = recipe['recipe']['yield']
         recipes[name]['ingredientLines'] = recipe['recipe']['ingredientLines']
         recipes[name]['calories'] = recipe['recipe']['calories']
-        recipes[name]['fats'] = recipe['recipe']['totalNutrients']['FAT']['quantity']
-        recipes[name]['carbs'] = recipe['recipe']['totalNutrients']['CHOCDF']['quantity']
-        recipes[name]['sugar'] = recipe['recipe']['totalNutrients']['SUGAR']['quantity']
-        recipes[name]['protein'] = recipe['recipe']['totalNutrients']['PROCNT']['quantity']
+        recipes[name]['fats'] = float(recipe['recipe']['totalNutrients']['FAT']['quantity'])/int(recipe['recipe']['yield'])
+        recipes[name]['carbs'] = float(recipe['recipe']['totalNutrients']['CHOCDF']['quantity'])/int(recipe['recipe']['yield'])
+        recipes[name]['sugar'] = float(recipe['recipe']['totalNutrients']['SUGAR']['quantity'])/int(recipe['recipe']['yield'])
+        recipes[name]['protein'] = float(recipe['recipe']['totalNutrients']['PROCNT']['quantity'])/int(recipe['recipe']['yield'])
         recipes[name]['url'] = recipe['recipe']['url']
         recipes[name]['shareAs'] = recipe['recipe']['totalNutrients']['PROCNT']['quantity']
 
