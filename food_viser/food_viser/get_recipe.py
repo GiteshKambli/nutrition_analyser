@@ -35,9 +35,9 @@ headers = {
 }
 
 
-def search_recipe(calories, health, cuisineType, mealType, carbMax, fatMax, sugarMax, proMin, ing_no=20,
-                  diet='balanced',
+def search_recipe(calories, health, cuisineType, mealType, carbMax, fatMax, sugarMax, proMin, ing_no = 20, diet='balanced',
                   random=True, q="Vegetables"):
+
     params = {
         # check https://developer.edamam.com/edamam-docs-recipe-api#/
         'type': 'public',
@@ -59,7 +59,7 @@ def search_recipe(calories, health, cuisineType, mealType, carbMax, fatMax, suga
     response = requests.get(url='https://api.edamam.com/api/recipes/v2', params=params, headers=headers)
     response.raise_for_status()
     data = response.json()
-
+    
     recipes = []
 
     for recipe in data['hits']:
@@ -76,10 +76,9 @@ def search_recipe(calories, health, cuisineType, mealType, carbMax, fatMax, suga
         current_recipe['protein'] = float(recipe['recipe']['totalNutrients']['PROCNT']['quantity'])/int(recipe['recipe']['yield'])
         current_recipe['url'] = recipe['recipe']['url']
         current_recipe['shareAs'] = recipe['recipe']['totalNutrients']['PROCNT']['quantity']
-        recipes.append(current_recipe)
+        recipe.append(current_recipe)        
 
     return recipes
-
 
 def find_nearest(user_recipes, recipes):
     pass
@@ -92,8 +91,7 @@ if __name__ == "__main__":
     # print(len(data['hits']))
     # pprint(data['hits'])
     recipes = {}
-    ab = search_recipe(calories=2000, health="alcohol-free", cuisineType="American", mealType="Breakfast", carbMax=1000,
-                       fatMax=1000, sugarMax=1000, proMin=20)
+    ab = search_recipe(calories = 2000, health = "alcohol-free", cuisineType= "American", mealType = "Breakfast", carbMax= 1000, fatMax = 1000, sugarMax= 1000, proMin = 20)
     pprint(ab)
     # for query in ['fried', 'fish', 'rice', 'salad']:
     #     params['q'] = query
