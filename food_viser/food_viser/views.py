@@ -21,6 +21,7 @@ import cv2
 from .models import Fixed20Recipes, Nutrition
 from .get_recipe import *
 
+
 class mainPage(View):
     template_name = 'main.html'
 
@@ -134,39 +135,40 @@ class ShowRecipeView(View):
         goal = user_profile.goal
         food_items = user_profile.food_items
         food_items = ast.literal_eval(food_items)
-        
-        food_items_dict = dict([(0, 'Crispy Fried Onions and Nori Topping Recipe'), 
-                            (1, 'Fried Noodles'), 
-                            (2, 'Fried Halloumi Cheese'), 
-                            (3, 'Fried Onion And Jalapeno Bison Burger Recipe'), 
-                            (4, 'Southern-fried chicken tacos'), 
-                            (5, 'Deep Fried Fish Bones'),
-                            (6, 'Burnt-Scallion Fish'), 
-                            (7, 'Curry-Crusted Fish'), 
-                            (8, 'Fish in Coconut Sauce'), 
-                            (9, 'Homemade fish fingers'), 
-                            (10, 'Essentials: Rice'), 
-                            (11, 'Rice Cereal Bars'), 
-                            (12, 'Rice-Milk Rice Pudding'), 
-                            (13, 'Cooked Basmati Rice'), 
-                            (14, 'Rainbow rice'), 
-                            (15, 'Steak & Chips Salad'), 
-                            (16, 'Zuni-Inspired Grilled Chicken Salad'), 
-                            (17, 'Shrimp Salad'), 
-                            (18, 'Buffalo Chicken Salad')])
+
+        food_items_dict = dict([(0, 'Crispy Fried Onions and Nori Topping Recipe'),
+                                (1, 'Fried Noodles'),
+                                (2, 'Fried Halloumi Cheese'),
+                                (3, 'Fried Onion And Jalapeno Bison Burger Recipe'),
+                                (4, 'Southern-fried chicken tacos'),
+                                (5, 'Deep Fried Fish Bones'),
+                                (6, 'Burnt-Scallion Fish'),
+                                (7, 'Curry-Crusted Fish'),
+                                (8, 'Fish in Coconut Sauce'),
+                                (9, 'Homemade fish fingers'),
+                                (10, 'Essentials: Rice'),
+                                (11, 'Rice Cereal Bars'),
+                                (12, 'Rice-Milk Rice Pudding'),
+                                (13, 'Cooked Basmati Rice'),
+                                (14, 'Rainbow rice'),
+                                (15, 'Steak & Chips Salad'),
+                                (16, 'Zuni-Inspired Grilled Chicken Salad'),
+                                (17, 'Shrimp Salad'),
+                                (18, 'Buffalo Chicken Salad')])
         user_recipes = []
         for item in food_items:
             recipe = {}
-            temp_recipe = Fixed20Recipes.objects.get(name = food_items_dict[int(item)])
+            temp_recipe = Fixed20Recipes.objects.get(name=food_items_dict[int(item)])
             recipe['yld'] = temp_recipe.yld
-            recipe['calories'] = temp_recipe.calories/ temp_recipe.yld
-            recipe['total_fat'] = temp_recipe.total_fat/ temp_recipe.yld
-            recipe['sugar'] = temp_recipe.sugar/ temp_recipe.yld
-            recipe['protein'] = temp_recipe.protein/ temp_recipe.yld
-            recipe['carbs'] = temp_recipe.carbs/ temp_recipe.yld
+            recipe['calories'] = temp_recipe.calories / temp_recipe.yld
+            recipe['fats'] = temp_recipe.fats / temp_recipe.yld
+            recipe['sugar'] = temp_recipe.sugar / temp_recipe.yld
+            recipe['protein'] = temp_recipe.protein / temp_recipe.yld
+            recipe['carbs'] = temp_recipe.carbs / temp_recipe.yld
             user_recipes.append(recipe)
-            
-        print(user_recipes)
+
+        print('\n ___________ USER RECIPES ___________')
+        pprint(user_recipes)
 
         # for item in food_items:
         #     temp_recipe = Fixed20Recipes.objects.get(id=int(item)+1)
@@ -198,10 +200,10 @@ class ShowRecipeView(View):
             calorie_intake += 300
 
         cal_per_dish = calorie_intake / 3
-        carb_max = cal_per_dish/8
-        min_pro = weight*2.2*0.8 / 4
+        carb_max = cal_per_dish / 8
+        min_pro = weight * 2.2 * 0.8 / 4
         fat_max = cal_per_dish * 0.25 / 9
-        sug_max = cal_per_dish /40
+        sug_max = cal_per_dish / 40
 
         print(f'calorie per serve = {cal_per_dish}')
 
@@ -217,11 +219,14 @@ class ShowRecipeView(View):
             diet=diet,
             q=recipe_query
         )
-        # user_recipes =
-        # sorted_recipes = find_nearest(user_recipes, searched_recipes)
-        print(recipes)
+        print("\n______ Searched Recipes ____________")
+        pprint(searched_recipes)
+
+        sorted_recipes = find_nearest(user_recipes, searched_recipes)
+        print("\n______ Sorted Recipes ____________")
+        pprint(sorted_recipes)
         context = {
-            'recipes': recipes
+            'recipes': sorted_recipes
         }
         return render(request, 'show_recipe.html', context)
 
