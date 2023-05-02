@@ -3,6 +3,7 @@ from pprint import pprint
 import os
 import json
 from dotenv import load_dotenv
+import math
 
 load_dotenv()
 APP_ID = os.getenv('APP_ID')
@@ -80,8 +81,23 @@ def search_recipe(calories, health, cuisineType, mealType, carbMax, fatMax, suga
 
     return recipes
 
-def find_nearest(user_recipes, recipes):
-    pass
+
+
+def find_nearest(user_recipes, searched_recipes):
+    for recipe in searched_recipes:
+        distances = []
+        for user_recipe in user_recipes:
+            distance = math.sqrt((recipe['calories'] - user_recipe['calories'])**2
+                                 + (recipe['fats'] - user_recipe['fats'])**2
+                                 + (recipe['carbs'] - user_recipe['carbs'])**2
+                                 + (recipe['sugar'] - user_recipe['sugar'])**2
+                                 + (recipe['protein'] - user_recipe['protein'])**2)
+            distances.append(distance)
+        recipe['distance'] = sum(distances)
+    searched_recipes.sort(key=lambda x: x['distance'])
+    return searched_recipes
+
+            
 
 
 if __name__ == "__main__":
@@ -92,7 +108,7 @@ if __name__ == "__main__":
     # pprint(data['hits'])
     recipes = {}
     ab = search_recipe(calories = 2000, health = "alcohol-free", cuisineType= "American", mealType = "Breakfast", carbMax= 1000, fatMax = 1000, sugarMax= 1000, proMin = 20)
-    pprint(ab)
+    find_nearest(ab,ab)
     # for query in ['fried', 'fish', 'rice', 'salad']:
     #     params['q'] = query
     #     response = requests.get(url='https://api.edamam.com/api/recipes/v2', params=params, headers=headers)
