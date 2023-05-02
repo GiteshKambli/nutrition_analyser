@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+ <meta charset="UTF-8">
+ <meta http-equiv="X-UA-Compatible" content="IE=edge">
+ <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
+ <title>Foodvisor</title>
+</head>
+<body>
+  <div class="container">
+   <h1 class="text-center p-3">User Information</h1>
+   <div class="row">
+    <div class="col-sm-10 shadow p-5 offset-sm-1">
+     <h3 class="text-center"><u>{{request.user|title}}</u></h3>
+     <p>Weight: {{object.weight}}</p>
+      <p>Age: {{object.age}}</p>
+      <p>Height: {{object.height}}</p>
+     <p>Gender: {{object.gender|title}}</p>
+     <p>Activity Levels: {{object.activity_level|title}}</p>
+     <p>Goals: {{object.goal|title}}</p>
+     <p>Preferred Food Items: {{object.food_items}}</p> 
+    <div class="text-center">
+     <a href="/" class="btn btn-danger">Back to Home</a>
+    </div>
+    </div>
+   </div>
+  </div>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js" integrity="sha384-b5kHyXgcpbZJO/tY9Ul7kGkf1S0CWuKcCD38l8YkeH8z8QjE0GmW1gYU5S9FOnJ0" crossorigin="anonymous"></script>
+</body>
+</html> 

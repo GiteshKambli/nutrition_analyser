@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@500&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Ysabeau:wght@800&display=swap" rel="stylesheet">
+    <title>Foodv!sor</title>
+
+    <style>
+        body{
+            {% comment %} background-color: #deeded; {% endcomment %}
+            font-family: 'Roboto', sans-serif;
+            padding-top: 150px;
+            background: rgb(63,251,195);
+            background: radial-gradient(circle, rgba(63,251,195,1) 0%, rgba(70,162,252,1) 100%);
+        }
+
+        h1, h2, h3, h4, h5, h6{
+            font-family: 'Ysabeau', sans-serif;
+        }
+
+        a,p{
+            color: #4b5156
+        }
+
+        .container{
+            max-width: 450px;
+            margin: auto;
+            background-color: #99D64;
+            -webkit-box-shadow: 2px 2px 13px -4px rgba(0, 0, 0, 0.21);
+            box-shadow: 25px 25px 33px -1px rgba(0, 0, 0, 0.21);
+            border-radius: 40px;
+        }
+
+        .p{
+            align-items: center;
+            display: flex;
+            justify-content: center;
+            color: #FAFAFA;
+            padding: 10px;
+            border-radius: 5px 5px 0 0;
+            background: linear-gradient(90deg, #49b7b3d9 0%, #49b7b3d9 43%, #49b7b3d9 100%);
+        }
+
+        .header-bar{
+            align-items: center;
+            display: flex;
+            justify-content: center;
+            {% comment %} color: #FAFAFA; {% endcomment %}
+            padding: 10px;
+            border-radius: 20px 20px 0 0;
+            background: rgb(153,214,212);
+            background: linear-gradient(90deg, rgba(153,214,212,1) 0%, rgba(70,242,235,1) 32%, rgba(73,183,179,1) 96%);        
+        }
+
+        .button{
+            margin-top: 20px;
+            border: 1px solid #49b7b3d9;
+            background-color #FAFAFA;
+            color: #49b7b3d9;
+            padding: 18px;
+            font-size: 18px;
+            font-weight: bolder;
+            border-radius: 25px;
+            width: 7rem;
+            cursor: pointer;
+            text-decoration: none;
+            margin-inline-start: 8.9rem;
+        }
+
+        input[type=text],
+        input[type=password],
+        textarea{
+            border: 1px solid #49b7b3d9;
+            border-radius: 25px;
+            padding: 10px;
+            width: 90%;
+        }
+
+        label{
+            padding-top: 10px !important;
+            display: block;
+        }
+
+        .card-body{
+            padding: 20px;
+        }
+
+    </style>
+
+</head>
+<body>
+    <div class = 'container'>
+        {% block content %}
+
+        {% endblock content %}
+    </div>
+</body>
+</html>
+
+    {% comment %} font-family: 'Roboto', sans-serif;
+    font-family: 'Ysabeau', sans-serif; {% endcomment %}

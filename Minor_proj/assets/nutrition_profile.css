@@ -1,0 +1,34 @@
+#id_gender, #id_goal, #id_activity_level{
+    list-style-type: none;
+    display: inline-flex;
+   }
+   
+   #id_gender li {
+    padding-left: 20px;
+   }
+   
+   #id_job_city > li {
+    padding-left: 10px;
+   }
+   
+#id_gender_0{
+    padding-right: 100px;
+}
+
+label{
+    padding-right: 10px;
+}
+
+.button{
+    margin-top: 20px;
+    border: 1px solid #49b7b3d9;
+    color: #49b7b3d9;
+    padding: 18px;
+    font-size: 18px;
+    font-weight: bolder;
+    border-radius: 25px;
+    width: 7rem;
+    cursor: pointer;
+    text-decoration: none;
+    margin-inline-start: 8.9rem;
+}
