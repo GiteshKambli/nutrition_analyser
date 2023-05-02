@@ -23,7 +23,7 @@
             <div class="left-side-menu">
                 <div class="logo">
                     <a href="{% url 'main' %}">
-                        <img src= {% static "images/logo_new.jpg"%} alt="Logo">
+                        <img src= "{% static 'images/logo_new.jpg'%}" alt="Logo">
                     </a>
                 </div>
 
@@ -46,7 +46,7 @@
             <div class="right-side-menu">
             <div class="sub-menu">
                 {% if request.user.is_authenticated %}
-                <a href="#">
+                <a href="{% url 'nutrition' user.id %}">
                     <li><i class="fa fa-solid fa-user" style="color: #49b7b3;"></i>  {{request.user|title}}</li>
                 </a>
                 <button onclick="window.location.href='{% url 'logout' %}'">Log Out</button>
@@ -101,7 +101,7 @@
         <!-- left-side-section2 -->
         <div class="left-side">
             <figure>
-                <img src={% static "images/section2.png"%} alt="section2">
+                <img src="{% static 'images/section2.png' %}" alt="section2">
             </figure>
         </div>
         <!-- right-side-section2 -->
