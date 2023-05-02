@@ -1,1 +1,63 @@
-print(len('https://edamam-product-images.s3.amazonaws.com/web-img/ada/ada26d6ae9e01af9ea37e2143096b284.jpg?X-Amz-Security-Token=IQoJb3JpZ2luX2VjEJ7%2F%2F%2F%2F%2F%2F%2F%2F%2F%2FwEaCXVzLWVhc3QtMSJIMEYCIQDZUkGsXJ0%2BDv3h1ipVyYliesulOyH0ExtM9Nk9FSUldQIhAOXTFNEm2fReEgN%2FLr7pTZlrqkS4AlLM3mJjdLiOapePKsIFCKb%2F%2F%2F%2F%2F%2F%2F%2F%2F%2FwEQABoMMTg3MDE3MTUwOTg2IgwqxK%2BbQkVbLMKGG88qlgW%2BAOEcaODBjol2hTwFDqnccttcc6pQw7aOl4WJ1JGxizrG%2F4BjbjYCKx0xc%2FxjswT3FN5zXyA0i7IYZZ8nye1%2FpgRr1RApi%2BahDYyPp%2B5rKTflD5qCyxUvF2HGE0oHxhG3XNM9u6gMHxyh%2FN25Y6CdDcZmQJPegHZDSQZoewTguPXFomXvSUH7GPnCix1NZJDSqIvi1kyLNCqgQqWhYeLAE5tIyR87fj2gBBzwcZYaDsH52x5a9FIVgKTad3mgu1xUMURLehgzsNyvYBhruOon36N8x%2BX1PcmCYlqV9lWlGnQSsr3jmHY5J6BXlWBig4NbwsYF1cQ87N61MySok4hnMTqydHPTEQ1v9jMG8y3fbgC9nSn7h5kWnpruc6j0S1XR4SwfvDGTNGPOKWCcvlz2v6b9i%2Fa3zRJ%2B9rp1RlyvKrbHKLScgOUhJJFcYggmWYZGcLvPFJ9%2FGdbuYg5kTlGnoSyxotvc1cnJ%2BvQWN1HQ5mWa9unVzg5Fim1k2bTqrmRzWbccRG74PkafN4r6MUeenQ8P4vC3%2FA2LJ1vpIf%2BOrC6ts1egSanwQZpDFd9HbSCvlDTwv6aKZYciR%2B0yZimDrY3B5Cq%2F7Al%2BypF%2BXFpxoXnBzKdZ3RR6LzCSf78AsvrSs3J3Ws%2BovNRYzJUVK%2B3hJLtouDtTGZDC6Ujk7ws9RMWJUREiyEyC7yFMfdMWxnulKWCyW9X5phrPyNDKk6xCaZ%2FJzzf9cKyT401HZowcdOSrszytm5pC%2B91th6c7iCZDlaZNS5EiTEBYp8yXqxSSuLWFcpy49F00L2XVxHllV3ww5v%2FiyiiHt8cpimLFk%2BSZignf%2BAzKPv431ILyzzCtNor%2FTN%2FupgxYdD63l695d65gFYxrKTDM9b6iBjqwAbDeUp5oHOLoZVGNDyj9CP9Jm5a8PxRNApLR5jeZhKQ4tTJfoLxsVq6eoA5sao8xmYGl6AgVu6r7yHE02gdKgTDGncQmYvtghGoZ5l0Lvz55LX49CwKwfbjwyNdXf5O2gPoaigJmrsvjFJCYoIqlr%2FGxh0BtU2hDxHuct1ewpH4kK8R3Rk%2Fe7fGmZLaZ%2BOtpgiiw8bDrK6JTGhusooDTtWGTlbNE2GO1cKlKtDGbeyh5&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Date=20230501T143619Z&X-Amz-SignedHeaders=host&X-Amz-Expires=3600&X-Amz-Credential=ASIASXCYXIIFAYYWHPX7%2F20230501%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Signature=386231d9e39056a37cc1d713ffd17ede74b7df07c9e50a6e249972cb0ba5389e'))
+from pprint import pprint
+
+from get_recipe import search_recipe
+
+if __name__ == '__main__':
+    weight = 86
+    height = 180
+    gender = 'male'
+    age = 20
+    activity_level = 'high'
+    goal = 'gain'
+    bmi = weight / (height/100)**2
+
+    if gender == 'male':
+        bmr = 10 * weight + 6.25 * height - 5 * age + 5
+        body_fat = 1.20 * bmi + 0.23 * age - 16.2
+    else:
+        bmr = 10 * weight + 6.25 * height - 5 * age - 161
+        body_fat = 1.20 * bmi + 0.23 * age - 5.4
+
+    activity_factor = 1
+
+    if activity_level.lower() == 'sedentary':
+        activity_factor = 0.8
+    elif activity_level.lower() == 'light':
+        activity_factor = 1
+    elif activity_level.lower() == 'moderate':
+        activity_factor = 1.2
+    elif activity_level.lower() == 'high':
+        activity_factor = 1.4
+
+    calorie_intake = round(bmr * activity_factor)
+
+    if goal.lower() == 'lose':
+        calorie_intake -= 300
+    if goal.lower() == 'gain':
+        calorie_intake += 300
+
+    cal_per_dish = calorie_intake / 3
+
+    print(f'calorie per serve = {cal_per_dish}')
+
+    cal_per_dish = calorie_intake / 3
+    carb_max = cal_per_dish / 8
+    min_pro = weight * 2.2 * 0.8 / 4
+    fat_max = cal_per_dish * 0.25 / 9
+    sug_max = cal_per_dish / 40
+
+    print(f'calorie per serve = {cal_per_dish}')
+
+    recipes = search_recipe(
+        calories=cal_per_dish,
+        health='dairy-free',
+        cuisineType='American',
+        mealType='dinner',
+        carbMax=carb_max,
+        fatMax=fat_max,
+        sugarMax=sug_max,
+        proMin=min_pro,
+        diet='high-protein',
+        q='chicken'
+    )
+    pprint(recipes)

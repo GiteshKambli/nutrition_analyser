@@ -122,8 +122,67 @@ class ShowRecipeView(View):
             'diet': diet
         }
         print(data)
-        # recipes = search_recipe()
-        return render(request, 'show_recipe.html')
+
+        user_profile = Nutrition.objects.get(user=request.user)
+
+        age = user_profile.age
+        height = user_profile.height
+        weight = user_profile.weight
+        gender = user_profile.gender
+        activity_level = user_profile.activity_level
+        goal = user_profile.goal
+        food_items = user_profile.food_items
+
+        print(age, height, weight, gender, activity_level, goal, food_items)
+
+        if gender == 'male':
+            bmr = 10 * weight + 6.25 * height - 5 * age + 5
+        else:
+            bmr = 10 * weight + 6.25 * height - 5 * age - 161
+
+        activity_factor = 1
+
+        if activity_level.lower() == 'sedentary':
+            activity_factor = 0.8
+        elif activity_level.lower() == 'light':
+            activity_factor = 1
+        elif activity_level.lower() == 'moderate':
+            activity_factor = 1.2
+        elif activity_level.lower() == 'high':
+            activity_factor = 1.4
+
+        calorie_intake = round(bmr * activity_factor)
+
+        if goal.lower() == 'lose':
+            calorie_intake -= 300
+        if goal.lower() == 'gain':
+            calorie_intake += 300
+
+        cal_per_dish = calorie_intake / 3
+        carb_max = cal_per_dish/8
+        min_pro = weight*2.2*0.8 / 4
+        fat_max = cal_per_dish * 0.25 / 9
+        sug_max = cal_per_dish /40
+
+        print(f'calorie per serve = {cal_per_dish}')
+
+        recipes = search_recipe(
+            calories=cal_per_dish,
+            health=health,
+            cuisineType=cuisine_type,
+            mealType=meal_type,
+            carbMax=carb_max,
+            fatMax=fat_max,
+            sugarMax=sug_max,
+            proMin=min_pro,
+            diet=diet,
+            q=recipe_query
+        )
+        print(recipes)
+        context = {
+            'recipes': recipes
+        }
+        return render(request, 'show_recipe.html', context)
 
 # def add_fixed_recipes(request):
 #     with open(r"C:\Users\Gitesh\OneDrive\Documents\GitHub\nutrition_analyser\food_viser\food_viser\recipes.json", 'r') as f:
