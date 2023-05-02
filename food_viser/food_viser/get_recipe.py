@@ -75,7 +75,7 @@ def search_recipe(calories, health, cuisineType, mealType, carbMax, fatMax, suga
         current_recipe['sugar'] = float(recipe['recipe']['totalNutrients']['SUGAR']['quantity'])/int(recipe['recipe']['yield'])
         current_recipe['protein'] = float(recipe['recipe']['totalNutrients']['PROCNT']['quantity'])/int(recipe['recipe']['yield'])
         current_recipe['url'] = recipe['recipe']['url']
-        current_recipe['shareAs'] = recipe['recipe']['totalNutrients']['PROCNT']['quantity']
+        current_recipe['shareAs'] = recipe['recipe']['shareAs']
         recipes.append(current_recipe)
 
     return recipes
