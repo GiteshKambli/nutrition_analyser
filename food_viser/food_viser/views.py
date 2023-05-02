@@ -154,10 +154,19 @@ class ShowRecipeView(View):
                             (16, 'Zuni-Inspired Grilled Chicken Salad'), 
                             (17, 'Shrimp Salad'), 
                             (18, 'Buffalo Chicken Salad')])
-        
+        user_recipes = []
         for item in food_items:
-            temp_recipe = Fixed20Recipes.objects.get(name = food_items_dict[item])
-            print(temp_recipe)
+            recipe = {}
+            temp_recipe = Fixed20Recipes.objects.get(name = food_items_dict[int(item)])
+            recipe['yld'] = temp_recipe.yld
+            recipe['calories'] = temp_recipe.calories/ temp_recipe.yld
+            recipe['total_fat'] = temp_recipe.total_fat/ temp_recipe.yld
+            recipe['sugar'] = temp_recipe.sugar/ temp_recipe.yld
+            recipe['protein'] = temp_recipe.protein/ temp_recipe.yld
+            recipe['carbs'] = temp_recipe.carbs/ temp_recipe.yld
+            user_recipes.append(recipe)
+            
+        print(user_recipes)
 
         # for item in food_items:
         #     temp_recipe = Fixed20Recipes.objects.get(id=int(item)+1)
