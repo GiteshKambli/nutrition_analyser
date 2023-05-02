@@ -14,5 +14,12 @@ class NutritionProfile(models.Model):
     goal = models.CharField(max_length=8, choices=[('lose', 'Lose'), ('maintain', 'Maintain'), ('gain', 'Gain')])
 
 
-# class Fixed20Recipes(models.Model):
-#     name = models.CharField()
+class Fixed20Recipes(models.Model):
+    name = models.CharField(max_length=1000)
+    image = models.CharField(max_length=5000)
+    yld = models.FloatField()
+    calories = models.FloatField()
+    fats = models.FloatField()
+    carbs = models.FloatField()
+    sugar = models.FloatField()
+    protein = models.FloatField()
