@@ -134,10 +134,34 @@ class ShowRecipeView(View):
         goal = user_profile.goal
         food_items = user_profile.food_items
         food_items = ast.literal_eval(food_items)
-
+        
+        food_items_dict = dict([(0, 'Crispy Fried Onions and Nori Topping Recipe'), 
+                            (1, 'Fried Noodles'), 
+                            (2, 'Fried Halloumi Cheese'), 
+                            (3, 'Fried Onion And Jalapeno Bison Burger Recipe'), 
+                            (4, 'Southern-fried chicken tacos'), 
+                            (5, 'Deep Fried Fish Bones'),
+                            (6, 'Burnt-Scallion Fish'), 
+                            (7, 'Curry-Crusted Fish'), 
+                            (8, 'Fish in Coconut Sauce'), 
+                            (9, 'Homemade fish fingers'), 
+                            (10, 'Essentials: Rice'), 
+                            (11, 'Rice Cereal Bars'), 
+                            (12, 'Rice-Milk Rice Pudding'), 
+                            (13, 'Cooked Basmati Rice'), 
+                            (14, 'Rainbow rice'), 
+                            (15, 'Steak & Chips Salad'), 
+                            (16, 'Zuni-Inspired Grilled Chicken Salad'), 
+                            (17, 'Shrimp Salad'), 
+                            (18, 'Buffalo Chicken Salad')])
+        
         for item in food_items:
-            temp_recipe = Fixed20Recipes.objects.get(id=int(item)+1)
+            temp_recipe = Fixed20Recipes.objects.get(name = food_items_dict[item])
             print(temp_recipe)
+
+        # for item in food_items:
+        #     temp_recipe = Fixed20Recipes.objects.get(id=int(item)+1)
+        #     print(temp_recipe)
 
         print(age, height, weight, gender, activity_level, goal, food_items)
 
