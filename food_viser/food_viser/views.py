@@ -1,3 +1,4 @@
+import ast
 import json
 
 from django.http import JsonResponse
@@ -18,7 +19,7 @@ from django.core.files.storage import default_storage
 import cv2
 
 from .models import Fixed20Recipes, Nutrition
-from .get_recipe import search_recipe
+from .get_recipe import *
 
 class mainPage(View):
     template_name = 'main.html'
@@ -132,6 +133,11 @@ class ShowRecipeView(View):
         activity_level = user_profile.activity_level
         goal = user_profile.goal
         food_items = user_profile.food_items
+        food_items = ast.literal_eval(food_items)
+
+        for item in food_items:
+            temp_recipe = Fixed20Recipes.objects.get(id=int(item)+1)
+            print(temp_recipe)
 
         print(age, height, weight, gender, activity_level, goal, food_items)
 
@@ -166,7 +172,7 @@ class ShowRecipeView(View):
 
         print(f'calorie per serve = {cal_per_dish}')
 
-        recipes = search_recipe(
+        searched_recipes = search_recipe(
             calories=cal_per_dish,
             health=health,
             cuisineType=cuisine_type,
@@ -178,6 +184,8 @@ class ShowRecipeView(View):
             diet=diet,
             q=recipe_query
         )
+        # user_recipes =
+        # sorted_recipes = find_nearest(user_recipes, searched_recipes)
         print(recipes)
         context = {
             'recipes': recipes
