@@ -69,7 +69,7 @@ def search_recipe(calories, health, cuisineType, mealType, carbMax, fatMax, suga
         recipes[name]['url'] = recipe['recipe']['url']
         recipes[name]['yield'] = recipe['recipe']['yield']
         recipes[name]['ingredientLines'] = recipe['recipe']['ingredientLines']
-        recipes[name]['calories'] = recipe['recipe']['calories']
+        recipes[name]['calories'] = float(recipe['recipe']['calories'])/int(recipe['recipe']['yield'])
         recipes[name]['fats'] = float(recipe['recipe']['totalNutrients']['FAT']['quantity'])/int(recipe['recipe']['yield'])
         recipes[name]['carbs'] = float(recipe['recipe']['totalNutrients']['CHOCDF']['quantity'])/int(recipe['recipe']['yield'])
         recipes[name]['sugar'] = float(recipe['recipe']['totalNutrients']['SUGAR']['quantity'])/int(recipe['recipe']['yield'])
