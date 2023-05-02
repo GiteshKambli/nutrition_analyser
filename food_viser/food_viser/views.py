@@ -1,5 +1,6 @@
 import json
 
+from django.http import JsonResponse
 from django.shortcuts import render, redirect
 from django.contrib.auth.views import LoginView
 from django.urls import reverse_lazy
@@ -15,7 +16,7 @@ from django.core.files.storage import default_storage
 import cv2
 
 from .models import NutritionProfile, Fixed20Recipes
-
+from .get_recipe import search_recipe
 
 class mainPage(View):
     template_name = 'main.html'
@@ -107,26 +108,50 @@ class NutritionProfileView(View):
         # Render a success message
         return render(request, 'main.html')
 
-def recipe_search(request):
-    return render(request, 'recipe.html')
+
+class RecipeFormView(View):
+    def get(self, request):
+        return render(request, 'recipe_form.html')
 
 
-def add_fixed_recipes(request):
-    with open(r"C:\Users\Gitesh\OneDrive\Documents\GitHub\nutrition_analyser\food_viser\food_viser\recipes.json", 'r') as f:
-        data = json.load(f)
+class ShowRecipeView(View):
 
-    for recipe, det in data['recipes'].items():
-        name = recipe
-        image = det['image']
-        yld = det['yield']
-        calories = det['calories']
-        fats = det['totalNutrients']['FAT']['quantity']
-        carbs = det['totalNutrients']['CHOCDF']['quantity']
-        sugar = det['totalNutrients']['SUGAR']['quantity']
-        protein = det['totalNutrients']['PROCNT']['quantity']
+    def post(self, request):
+        recipe_query = request.POST.get('recipe_query', None)
+        health = request.POST.get('health', None)
+        cuisine_type = request.POST.get('cuisine_type', None)
+        meal_type = request.POST.get('meal_type', None)
+        diet = request.POST.get('diet', None)
 
-        print(name, yld, calories, fats, carbs, sugar, protein)
-        recipe = Fixed20Recipes(name=name, image=image, yld=yld, calories=calories, fats=fats, carbs=carbs, sugar=sugar,
-                                protein=protein)
-        recipe.save()
-    return render(request, 'success.html')
+        # Do something with the data, such as querying a database
+        # and returning the results as a JSON response
+        data = {
+            'recipe_query': recipe_query,
+            'health': health,
+            'cuisine_type': cuisine_type,
+            'meal_type': meal_type,
+            'diet': diet
+        }
+        print(data)
+        recipes = search_recipe()
+        return render(request, 'show_recipe.html')
+
+# def add_fixed_recipes(request):
+#     with open(r"C:\Users\Gitesh\OneDrive\Documents\GitHub\nutrition_analyser\food_viser\food_viser\recipes.json", 'r') as f:
+#         data = json.load(f)
+#
+#     for recipe, det in data['recipes'].items():
+#         name = recipe
+#         image = det['image']
+#         yld = det['yield']
+#         calories = det['calories']
+#         fats = det['totalNutrients']['FAT']['quantity']
+#         carbs = det['totalNutrients']['CHOCDF']['quantity']
+#         sugar = det['totalNutrients']['SUGAR']['quantity']
+#         protein = det['totalNutrients']['PROCNT']['quantity']
+#
+#         print(name, yld, calories, fats, carbs, sugar, protein)
+#         recipe = Fixed20Recipes(name=name, image=image, yld=yld, calories=calories, fats=fats, carbs=carbs, sugar=sugar,
+#                                 protein=protein)
+#         recipe.save()
+#     return render(request, 'success.html')

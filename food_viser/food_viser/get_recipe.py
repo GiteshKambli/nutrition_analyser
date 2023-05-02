@@ -35,8 +35,9 @@ headers = {
 }
 
 
-def search_recipe(calories, health, cuisineType, mealType, carbMax, fatMax, sugarMax, proMin, random=True,
-                  q="Vegetables"):
+def search_recipe(calories, health, cuisineType, mealType, carbMax, fatMax, sugarMax, proMin, ing_no, diet='balanced',
+                  random=True, q="Vegetables"):
+
     params = {
         # check https://developer.edamam.com/edamam-docs-recipe-api#/
         'type': 'public',
@@ -44,6 +45,7 @@ def search_recipe(calories, health, cuisineType, mealType, carbMax, fatMax, suga
         'app_id': APP_ID,
         'app_key': APP_KEY,
         'health': health,
+        'diet': diet,
         'cuisineType': cuisineType,
         'mealType': mealType,
         'nutrients[CHOCDF.net]': carbMax,
@@ -52,6 +54,7 @@ def search_recipe(calories, health, cuisineType, mealType, carbMax, fatMax, suga
         'nutrients[PROCNT]': str(proMin) + "+",
         'calories': calories,
         'random': random,
+        'ingr': ing_no
     }
     response = requests.get(url='https://api.edamam.com/api/recipes/v2', params=params, headers=headers)
     response.raise_for_status()

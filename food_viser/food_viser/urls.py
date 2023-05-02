@@ -12,8 +12,9 @@ urlpatterns = [
     path('logout/', LogoutView.as_view(next_page='main'), name='logout'),
     path('scan/', scan_label, name="scan"),
     path('nutrition_profile/', NutritionProfileView.as_view(), name="nutrition_profile"),
-    path('recipe-search/', recipe_search, name="recipe-search"),
-    path('add-fixed-recipes/', add_fixed_recipes, name='add-fixed-recipes'),
+    path('recipe-form/', RecipeFormView.as_view(), name="recipe-form"),
+    path('show-recipe/', ShowRecipeView.as_view(), name='show-recipe')
+    # path('add-fixed-recipes/', add_fixed_recipes, name='add-fixed-recipes'),
 ]
 
 

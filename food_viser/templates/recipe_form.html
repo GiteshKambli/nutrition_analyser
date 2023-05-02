@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Foodv!sor</title>
+</head>
+<body>
+<form method="POST" action="{% url 'show-recipe' %}">
+  {% csrf_token %}
+  <label for="recipe_query">Recipe Query:</label>
+  <input type="text" id="recipe_query" name="recipe_query"><br>
+
+  <label for="health">Health:</label>
+  <select id="health" name="health">
+    <option value="alcohol-cocktail">Alcohol-Cocktail</option>
+    <option value="alcohol-free">Alcohol-Free</option>
+    <option value="dairy-free">Dairy-Free</option>
+    <option value="egg-free">Egg-Free</option>
+    <option value="fish-free">Fish-Free</option>
+    <option value="gluten-free">Gluten-Free</option>
+    <option value="keto-friendly">Keto-Friendly</option>
+    <option value="low-sugar">Low-Sugar</option>
+    <option value="peanut-free">Peanut-Free</option>
+    <option value="pork-free">Pork-Free</option>
+    <option value="red-meat-free">Red-Meat-Free</option>
+    <option value="vegetarian">Vegetarian</option>
+  </select><br>
+
+  <label for="diet">Diet:</label>
+  <select id="diet" name="diet">
+    <option value="balanced">Balanced</option>
+    <option value="high-fiber">High-Fiber</option>
+    <option value="high-protein">High-Protein</option>
+    <option value="low-carb">Low-Carb</option>
+    <option value="low-fat">Low-Fat</option>
+  </select><br>
+
+  <label for="cuisine_type">Cuisine Type:</label>
+  <select id="cuisine_type" name="cuisine_type">
+      <option value="American"> American  </option>
+      <option value="Asian"> Asian  </option>
+      <option value="British"> British  </option>
+      <option value="Caribbean"> Caribbean  </option>
+      <option value="Central Europe"> Central Europe  </option>
+      <option value="Chinese"> Chinese  </option>
+      <option value="Eastern Europe"> Eastern Europe  </option>
+      <option value="French"> French  </option>
+      <option value="Indian"> Indian  </option>
+      <option value="Italian"> Italian  </option>
+      <option value="Japanese"> Japanese  </option>
+      <option value="Kosher"> Kosher  </option>
+      <option value="Mediterranean"> Mediterranean  </option>
+      <option value="Mexican"> Mexican  </option>
+      <option value="Middle Eastern"> Middle Eastern  </option>
+      <option value="Nordic"> Nordic  </option>
+      <option value="South American"> South American  </option>
+      <option value="South East Asian"> South East Asian  </option>
+  </select><br>
+
+  <label for="meal_type">Meal Type:</label>
+  <select id="meal_type" name="meal_type">
+    <option value="dinner">Dinner</option>
+    <option value="lunch">Lunch</option>
+    <option value="breakfast">Breakfast</option>
+    <option value="snacks">Snacks</option>
+  </select><br>
+
+  <input type="submit" value="Search">
+</form>
+
+</body>
+</html>
+
+
