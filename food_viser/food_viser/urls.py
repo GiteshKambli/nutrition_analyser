@@ -15,6 +15,7 @@ urlpatterns = [
     path('recipe-form/', RecipeFormView.as_view(), name="recipe-form"),
     path('show-recipe/', ShowRecipeView.as_view(), name='show-recipe'),
     path('nutrition/<slug:user_id>/', NutritionDetail.as_view(), name='nutrition'),
+    path('', include('pwa.urls'))
     # path('add-fixed-recipes/', add_fixed_recipes, name='add-fixed-recipes'),
 ]
 
